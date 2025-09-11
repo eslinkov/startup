@@ -61,14 +61,13 @@ I am going to use the required technologies in the following ways.
 - **React** - React Router library will handle the routing for navigation between pages. Using components to represent different parts of the user interface and routing to navigate between them. A component for each part of the application will be created (main app router, home page, login page, drawing board, tools, users in session)
 
 - **Service** - Backend server for:
-            - User login/registration/authentication
-            - Retreiving drawing sessions user has access to
-            - Creating/managing drawing sessions
-
+            User login/registration/authentication
+            Retreiving drawing sessions user has access to
+            Creating/managing drawing sessions
             API Integration for:
-            - API to retreive a color palette
-            - image search API for importing images to canvas
-            - font selsection API
+            API to retreive a color palette
+            image search API for importing images to canvas
+            font selsection API
 
 - **Database/Login** - SQL database for storing user authentication details/credentials, managing drawing board sessions, storing the drawing history of sessions
 
