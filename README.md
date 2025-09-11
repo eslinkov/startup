@@ -35,7 +35,7 @@ Ever wish you could sketch out ideas with a friend as if you were sitting right 
 
 ![Design image](HomePage.png)
 ![Design image](Dashboard.png)
-![Design image][HomePage.png]
+![Design image](HomePage.png)
 
 Then sketch out what the application looks like. You can use a tool like NinjaMock.com to quickly produce a rough layout. Google docs, or plain old paper works fine too (just take pictures or screenshots for your submission).
 
