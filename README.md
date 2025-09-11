@@ -2,7 +2,6 @@
 
 [My Notes](notes.md)
 
-A brief description of the application here. 
 CoCreate is a collaborative drawing application, that allows multiple users to create and interact on a shared digital canvas at the same time. Updates to the canvas are shown in real-time using WebSockets to broadcast user's edits to each other. 
 
 
@@ -25,7 +24,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
 - [x] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -37,14 +36,7 @@ Ever wish you could sketch out ideas with a friend as if you were sitting right 
 ![Design image](Dashboard.png)
 ![Design image](HomePage.png)
 
-Then sketch out what the application looks like. You can use a tool like NinjaMock.com to quickly produce a rough layout. Google docs, or plain old paper works fine too (just take pictures or screenshots for your submission).
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
 
 ### Key features
 
