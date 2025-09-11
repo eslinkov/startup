@@ -101,9 +101,25 @@ Handling the toggling of the checkboxes was particularly interesting.
 hello
 
 
+# MARDKOWN (this is a title)
+
+## This is a header
+
+### This is a smaller header
+
+**This is an even smaller header**
 
 
 
+![THIS IS AN IMAGE](imagePathOrFile.png.pdf.jpg)
+
+> [!NOTE]
+> This is a boxed out note section
+
+
+- This is a bullet list item
+- This is another bullet list item
+  - This is an indented bullet list item
 
 
 
