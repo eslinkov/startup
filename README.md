@@ -21,10 +21,10 @@ CoCreate is a collaborative drawing application, that allows multiple users to c
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
@@ -33,7 +33,9 @@ Ever wish you could sketch out ideas with a friend as if you were sitting right 
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](HomePage.png)
+![Design image](Dashboard.png)
+![Design image][HomePage.png]
 
 Then sketch out what the application looks like. You can use a tool like NinjaMock.com to quickly produce a rough layout. Google docs, or plain old paper works fine too (just take pictures or screenshots for your submission).
 
@@ -52,7 +54,7 @@ sequenceDiagram
 - Undoing or reverting changes
 - Ablility for canvas creater to share a link with other to access
 - Guest access?
-- Ability to create, save, and delete canvases
+- Ability to create, save, name, and delete canvases
 - Ability to choose drawing options such as color, stroke size, opacity etc...
 - Ability to upload images to the canvas
 
@@ -156,3 +158,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+
+
+[def]: CanvasPage.png
