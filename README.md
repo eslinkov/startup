@@ -64,7 +64,6 @@ I am going to use the required technologies in the following ways.
     - User login/registration/authentication 
     - Retreiving drawing sessions user has access to
     - Creating/managing drawing sessions
-    - API Integration for:
     - API to retreive a color palette
     - image search API for importing images to canvas
     - font selsection API
