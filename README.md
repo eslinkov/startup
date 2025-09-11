@@ -34,7 +34,7 @@ Ever wish you could sketch out ideas with a friend as if you were sitting right 
 
 ![Design image](HomePage.png)
 ![Design image](Dashboard.png)
-![Design image](HomePage.png)
+![Design image](CanvasPage.png)
 
 
 
