@@ -111,7 +111,7 @@ hello
 
 
 
-![THIS IS AN IMAGE](imagePathOrFile.png.pdf.jpg)
+![THIS IS AN IMAGE](moscow.jpg)
 
 > [!NOTE]
 > This is a boxed out note section
