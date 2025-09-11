@@ -1,8 +1,9 @@
-# Your startup name here
+# CoCreate
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+A brief description of the application here. 
+CoCreate is a collaborative drawing application, that allows multiple users to create and interact on a shared digital canvas at the same time. Updates to the canvas are shown in real-time using WebSockets to broadcast user's edits to each other. 
 
 
 > [!NOTE]
@@ -28,13 +29,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Ever wish you could sketch out ideas with a friend as if you were sitting right next to them, even though you are on the other side of the world? CoCreate is the answer! It's a real-time, collaborative digital canvas that allows you to create, brainstorm, draw, and share ideas instantly. Whether for professional or casual use, the platform provides a dynamic space for presenting your creativity to others. 
 
 ### Design
 
 ![Design image](placeholder.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Then sketch out what the application looks like. You can use a tool like NinjaMock.com to quickly produce a rough layout. Google docs, or plain old paper works fine too (just take pictures or screenshots for your submission).
 
 ```mermaid
 sequenceDiagram
@@ -45,20 +46,41 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Logging into account
+- Real time synchronization across shared canvases
+- Displaying list of users in the current session
+- Undoing or reverting changes
+- Ablility for canvas creater to share a link with other to access
+- Guest access?
+- Ability to create, save, and delete canvases
+- Ability to choose drawing options such as color, stroke size, opacity etc...
+- Ability to upload images to the canvas
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Single page layout that serves as a foundation for the entire application. It will include the main canvas and the user interface elements for drawing tools and session management. Planning on using one main container of HTML 1- home page 2- login page 3- dashboard/ my canvases page 4- canvas drawing page
+
+- **CSS** - Styling of the main layout, the drawing canvas, and all the interactive tools. Dedicated CSS file for each component to present each page in a user-friendly, clean way. 
+
+- **React** - React Router library will handle the routing for navigation between pages. Using components to represent different parts of the user interface and routing to navigate between them. A component for each part of the application will be created (main app router, home page, login page, drawing board, tools, users in session)
+
+- **Service** - Backend server for:
+                - User login/registration/authentication
+                - Retreiving drawing sessions user has access to
+                - Creating/managing drawing sessions
+
+                API Integration for:
+                - API to retreive a color palette
+                - image search API for importing images to canvas
+                - font selsection API
+
+- **Database/Login** - SQL database for storing user authentication details/credentials, managing drawing board sessions, storing the drawing history of sessions
+
+- **WebSocket** - Handling of client connections between the server and other clients with a constand open connection. Makes it so any edits a user makes to the session will be shown on the page on other users interface. 
+
+
 
 ## 🚀 AWS deliverable
 
