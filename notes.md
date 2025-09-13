@@ -20,7 +20,7 @@
 ## AWS
 
 **IP Addresses:**
-My IP address is: 54.81.96.130
+
   - Must have if one device wants to talk to another device
 
 **Domain names:**
@@ -50,8 +50,27 @@ Looking up IP address in the DNS:
 | Link        | Fiber, hardware | Physical connections                  |
 
 
+**My Server**
 
+My public IP address is: 54.208.15.188
 
+Remote shell into server from Ubuntu:
+
+```sh
+-> ssh -i ~/.ssh/mykey.pem ubuntu@54.208.15.188
+```
+
+Launches the console window for the web server, takes you in the ubuntu users home directory
+
+```sh
+Run -> ls -l
+```
+
+Caddyfile - 
+public_html - 
+services - directory to install web services once they are built
+
+Run `exit` command to close the connection to the server
 
 ## Caddy
 
