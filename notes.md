@@ -56,7 +56,7 @@ Looking up IP address in the DNS:
 
 **My Server**
 
-My public IP address is: 54.208.15.188
+My public IP address is: 100.28.64.219
 
 Elastic IP address: 100.28.64.219
 ```sh
@@ -65,7 +65,7 @@ http://100.28.64.219/
 Remote shell into server from Ubuntu:
 
 ```sh
--> ssh -i ~/.ssh/mykey.pem ubuntu@54.208.15.188
+-> ssh -i ~/.ssh/mykey.pem ubuntu@100.28.64.219
 ```
 
 Launches the console window for the web server, takes you in the ubuntu users home directory
