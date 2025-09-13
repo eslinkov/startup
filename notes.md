@@ -18,7 +18,7 @@
   2- git add <fileName>
 
   3- git commit -am "description"
-  
+
   4- git push
 
 ## AWS
@@ -70,11 +70,11 @@ Launches the console window for the web server, takes you in the ubuntu users ho
 Run -> ls -l
 ```
 
-Caddyfile - 
+**Caddyfile** - 
 
-public_html - 
+**public_html** - 
 
-services - directory to install web services once they are built
+**services** - directory to install web services once they are built
 
 Run `exit` command to close the connection to the server
 
