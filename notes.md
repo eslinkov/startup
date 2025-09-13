@@ -60,7 +60,7 @@ My public IP address is: 100.28.64.219
 
 Elastic IP address: 100.28.64.219
 ```sh
-http://100.28.64.219/
+[http://100.28.64.219](http://100.28.64.219)
 ```
 Remote shell into server from Ubuntu:
 
