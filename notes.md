@@ -12,9 +12,13 @@
 ## Git
 
 **Making Updates**
+
   1- Save changes on VS code
+
   2- git add <fileName>
+
   3- git commit -am "description"
+  
   4- git push
 
 ## AWS
@@ -67,7 +71,9 @@ Run -> ls -l
 ```
 
 Caddyfile - 
+
 public_html - 
+
 services - directory to install web services once they are built
 
 Run `exit` command to close the connection to the server
