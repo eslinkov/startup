@@ -58,6 +58,10 @@ Looking up IP address in the DNS:
 
 My public IP address is: 54.208.15.188
 
+Elastic IP address: 100.28.64.219
+```sh
+http://100.28.64.219/
+```
 Remote shell into server from Ubuntu:
 
 ```sh
