@@ -9,9 +9,48 @@
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
 
+## Git
+
+**Making Updates**
+  1- Save changes on VS code
+  2- git add <fileName>
+  3- git commit -am "description"
+  4- git push
+
 ## AWS
 
+**IP Addresses:**
 My IP address is: 54.81.96.130
+  - Must have if one device wants to talk to another device
+
+**Domain names:**
+  - Human friendly symbolic name that represents an IP address
+  - Domain names are converted to IP address by looking up in the Domain Name System
+
+Looking up IP address in the DNS:
+  - Open console
+  - Type: dig <domain name>
+
+**Traceroute:**
+  - Console utility used to determine hops in a connection and traces the route the connection between devices takes
+  - Type: traceroute <domain name>
+    - Results:
+      - IP address of the router device 1 is connected to
+      - Unidentified addresses
+      - Internet service provider gateway for the requesting device
+      - IP address of device 2
+
+**TCP/IP model:** actual sending of data across the internet
+
+| Layer       | Example         | Purpose                               |
+| ----------- | --------------- | ------------------------------------- |
+| Application | HTTPS           | Functionality like web browsing       |
+| Transport   | TCP             | Moving connection information packets |
+| Internet    | IP              | Establishing connections              |
+| Link        | Fiber, hardware | Physical connections                  |
+
+
+
 
 
 ## Caddy
