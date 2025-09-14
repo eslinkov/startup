@@ -27,15 +27,41 @@
 
   - Must have if one device wants to talk to another device
 
-**Domain names:**
+**Domains:**
+
   - Human friendly symbolic name that represents an IP address
   - Domain names are converted to IP address by looking up in the Domain Name System
+  - There can be multiple IP addresses associated with 1 domain
+
+  Root domain:
+
+  - contains secondary level domain and a top level domain
+    -> secondary.top
+
+  Subdomain:
+
+  - Prefix to the root domain
+
+    -> [subdomain].secondary.top
+  - Owner of root domain can create any number of subdomains for the root
+
+  Get information about domain name:
+
+  ```yaml
+  -> whois secondary.top
+  ```
+
+  
+
+
 
 Looking up IP address in the DNS:
+
   - Open console
   - Type: dig <domain name>
 
 **Traceroute:**
+
   - Console utility used to determine hops in a connection and traces the route the connection between devices takes
   - Type: traceroute <domain name>
     - Results:
