@@ -58,7 +58,11 @@
 Looking up IP address in the DNS:
 
   - Open console
-  - Type: dig <domain name>
+
+  ```yaml
+  dig secondary.top
+  ```
+  
 
 **Traceroute:**
 
