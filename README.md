@@ -79,6 +79,16 @@ I am going to use the required technologies in the following ways.
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Server deployed and accessible with custom domain name** - [My server link](https://startup.emmastartup.com).
+- [x] Set up my AWS account
+- [x] Created a new EC2 instance, and could access the server using http://100.28.64.219
+- [x] Leased a domain in Route53
+    - My domain name I created is emmastartup.com
+- [x] Edited my Caddyfile so that I could access my server through HTTPS.
+    - At this point, I was able to securely establish a connection with my domain that I leased since I had secured the connection. 
+
+Issues I ran into:
+
+I could not access my server using http://startup.emmastartup.com due to my computer browser firewalls not letting me establish a connection because the server hadn't been secured yet. However that was quickly resolved once I updated the Caddyfile and established the HTTPS connection.
 
 ## 🚀 HTML deliverable
 
