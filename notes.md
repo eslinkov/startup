@@ -261,9 +261,43 @@ opening tag --> `<element>`
 
 closing tag --> `</element>`
 
+`<!DOCTYPE html>` --> header definition you should include at the top of the HTML file
+
 **Attributes**
 
+Every HTML element may have attributes, these describe specific details of the element
+
+Written inside the element opening tag with a name followed by an optional value surrounded by quotes:
+
+`<element attribute="value" attribute2="value"> content </element>`
+
+`id` attribute --> gives a unique ID to the element so that you can distringuish it from other elements
+
+`class` attribute --> designates the element as being classifies into a named roup of elements
+
 **Hyperlinks**
+
+Lets you navigate from one page to another
+
+Represented with an anchor `a` element that has the `href` attribute containing the address of the hyperlink
+
+Format:
+
+```html
+<a href="https://mylink.com">Go to website</a>
+```
+
+**Comments**
+
+```html
+<!-- commented text -->
+```
+
+**Special Characters**
+
+**index.html**
+
+**Rendering HTML**
 
 
 
