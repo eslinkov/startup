@@ -222,9 +222,9 @@ Main exchange info is identifying the domain name of the server creating the sec
 
 p --> paragraph element
 
-opening tag --> <element> 
+opening tag --> `<element>` 
 
-closing tag --> </element>
+closing tag --> `</element>`
 
 
 
