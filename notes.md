@@ -220,6 +220,7 @@ Main exchange info is identifying the domain name of the server creating the sec
 
 **HTML Elements and tags**
 
+Common structural elements:
 
 | element   | meaning                                                                |
 | --------- | ---------------------------------------------------------------------- |
@@ -263,6 +264,66 @@ closing tag --> `</element>`
 
 `<!DOCTYPE html>` --> header definition you should include at the top of the HTML file
 
+1. Start with the top level content `body`
+  - Three children: `header`, `main`, and `footer`
+
+  2. `Header` --> contains a `p`aragraph with a `span`, and a `nav`igation containing multiple `div`isions of sub-content.
+
+  3. `main` --> contains multiple `section`s that contain either an unordered list (`ul`) or a `table`. Main also contains an `aside` for content that does not fit the content flow of the sections.
+
+  4. `footer` --> contains a content division with a single span
+
+  ```html
+<body>
+  <p>Body</p>
+  <header>
+    <p>Header - <span>Span</span></p>
+    <nav>
+      Navigation
+      <div>Div</div>
+      <div>Div</div>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <p>Section</p>
+      <ul>
+        <li>List</li>
+        <li>List</li>
+        <li>List</li>
+      </ul>
+    </section>
+    <section>
+      <p>Section</p>
+      <table>
+        <tr>
+          <th>Table</th>
+          <th>Table</th>
+          <th>Table</th>
+        </tr>
+        <tr>
+          <td>table</td>
+          <td>table</td>
+          <td>table</td>
+        </tr>
+      </table>
+    </section>
+    <aside>
+      <p>Aside</p>
+    </aside>
+  </main>
+
+  <footer>
+    <div>Footer - <span>Span</span></div>
+  </footer>
+</body>
+```
+
+Block Element --> a distinct block in the flow of the content structure
+
+Inline Element --> element inline with the content flow of a block element, does not disrupt the flow of a block element's content
+
 **Attributes**
 
 Every HTML element may have attributes, these describe specific details of the element
@@ -274,6 +335,8 @@ Written inside the element opening tag with a name followed by an optional value
 `id` attribute --> gives a unique ID to the element so that you can distringuish it from other elements
 
 `class` attribute --> designates the element as being classifies into a named roup of elements
+
+`width` attribute --> width = "" inside the `<img>` opening tag to change size 
 
 **Hyperlinks**
 
@@ -295,14 +358,117 @@ Format:
 
 **Special Characters**
 
+Reserved characters for defining file format
+
+Must use the `entity` syntax associated with a specific character in order to escape them to use
+
+| Character | Entity      |
+| --------- | ----------- |
+| &amp;     | `&amp;`     |
+| <         | `&lt;`      |
+| >         | `&gt;`      |
+| "         | `&quot;`    |
+| '         | `&apos;`    |
+| &#128512; | `&#128512;` |
+
+
 **index.html**
+
+Name the main HTML file for web application `index.html`
 
 **Rendering HTML**
 
+1. Save HTML file to computer disk and open the file using the browser
+
+2. Open the HTML file in VS Code and use the Live Server extension to display the HTML
+
+3. Use CodePen to render
 
 
+**HTML Input Elements**
+
+Elements created for accepting the input of user data
 
 
+| Element    | Meaning                          | Example                                        |
+| ---------- | -------------------------------- | ---------------------------------------------- |
+| `form`     | Input container and submission   | `<form action="form.html" method="post">`      |
+| `fieldset` | Labeled input grouping           | `<fieldset> ... </fieldset>`                   |
+| `input`    | Multiple types of user input     | `<input type="" />`                            |
+| `select`   | Selection dropdown               | `<select><option>1</option></select>`          |
+| `optgroup` | Grouped selection dropdown       | `<optgroup><option>1</option></optgroup>`      |
+| `option`   | Selection option                 | `<option selected>option2</option>`            |
+| `textarea` | Multiline text input             | `<textarea></textarea>`                        |
+| `label`    | Individual input label           | `<label for="range">Range: </label>`           |
+| `output`   | Output of input                  | `<output for="range">0</output>`               |
+| `meter`    | Display value with a known range | `<meter min="0" max="100" value="50"></meter>` |
+
+
+**Form Element**
+
+`form` --> submit the values of the inputs it contains, not required for use but can be used as a cotainer
+
+```html
+<form action="submission.html" method="post">
+  <label for="ta">TextArea: </label>
+  <textarea id="ta" name="ta-id"> --> what the browser uses to generate data
+Some text
+  </textarea>
+  <button type="submit">Submit</button>
+</form>
+```
+
+Pressing submit button will send data to the web server
+
+**Input Element**
+
+There are many different input types the input element represents:
+
+| Type           | Meaning                           |
+| -------------- | --------------------------------- |
+| text           | Single line textual value         |
+| password       | Obscured password                 |
+| email          | Email address                     |
+| tel            | Telephone number                  |
+| url            | URL address                       |
+| number         | Numerical value                   |
+| checkbox       | Inclusive selection               |
+| radio          | Exclusive selection               |
+| range          | Range limited number              |
+| date           | Year, month, day                  |
+| datetime-local | Date and time                     |
+| month          | Year, month                       |
+| week           | Week of year                      |
+| color          | Color                             |
+| file           | Local file                        |
+| submit         | button to trigger form submission |
+
+
+**Creating an input** --> specify the desired `type` attribute along with any other attribute associated with that specific input
+
+Common input element attributes:
+
+| Attribute | Meaning                                                                             |
+| --------- | ----------------------------------------------------------------------------------- |
+| name      | The name of the input. This is submitted as the name of the input if used in a form |
+| disabled  | Disables the ability for the user to interact with the input                        |
+| value     | The initial value of the input                                                      |
+| required  | Signifies that a value is required in order to be valid                             |
+
+`required` attribut --> specify on an input element to mark it as requireing a value before it can be submitted
+
+`pattern` attribute --> provides a regular expression that must match for the input to be considered as valid
+  - exists on `text`, `search`, `url`, `tel`, `email`, `password` input types
+
+**Validating Input**
+
+1. Can use `pattern` and `required` attributes
+
+2. Also build valdation into JavaScript that checks input data to ensure validity before submission
+
+3. CSS style selectors for visualizing the validity of the input
+
+Provide sufficient user feedback early in the input process 
 
 
 
