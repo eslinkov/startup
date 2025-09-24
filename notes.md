@@ -460,6 +460,9 @@ Common input element attributes:
 `pattern` attribute --> provides a regular expression that must match for the input to be considered as valid
   - exists on `text`, `search`, `url`, `tel`, `email`, `password` input types
 
+`value` attribute --> "default" value
+  - using value attribute for colors: `<input type="color" name="varColor" id="color" value="#FF0000" />`
+
 **Validating Input**
 
 1. Can use `pattern` and `required` attributes
@@ -471,7 +474,53 @@ Common input element attributes:
 Provide sufficient user feedback early in the input process 
 
 
+**HTML Media Elements**
 
+`img`
+- reference to external file
+- takes a URL as an attribute --> relative path or full path URL
+- use the img element and specify the src attribute with the URL to source image
+- include alt attribute that describes image
+
+```html
+<img alt="image description" src="https://image.source.hyperlink.location.filetype" />
+```
+
+`audio`
+- reference to external file
+- takes a URL as an attribute --> relative path or full path URL
+- use audio element and specify the `src` attributw with the URL to source audio file
+- `controls` attribute if you want the user to control audio playback
+- `autoplay` attribute starts playing automatically
+- `loop` attribute keeps audio playing over and over
+
+```html
+<audio controls or autoplay or loop src="audioFile.mp3"></audio>
+```
+
+`video` 
+- reference to external file
+- takes a URL as an attribute `src` --> relative path or full path URL
+- `controls` or `autoplay` attributes
+- `crossorigin="anonymous"` --> if requesting filrs from different domain than the one serving your content
+
+```html
+<video controls or autoplay width="###" crossorigin="anonymous">
+    <source src="https://myvideo.com.mp4" />
+</video> 
+```
+
+`svg` (scalable vector graphics)
+- code to render visual image
+- internal media
+- render graphics inline in HTML
+- combine with JS and CSS to produce visualizations
+
+`canvas`
+- code to render visual image
+- internal media
+- facilitates 2D drawing and animation
+- requires JS support
 
 This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
 
