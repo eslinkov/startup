@@ -95,9 +95,15 @@ I could not access my server using http://startup.emmastartup.com due to my comp
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 
-- [ ] **HTML pages** - Formatted the HTML in code pen at first, I made a separate pen for each page
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
+- [ ] **HTML pages** - Used the Go Live feature on VS code to render the HTML I wrote for each page. First I worked on the "Home" page that is presented to logged in users. Next I created the HTML for the "login" page that lets existing users log into their accoutn and new users to create an accoutn. Both of the log in buttons successfully link to the index html page. 
+- [ ] **Proper HTML element usage** - Created a footer that contains my name and link to my GitHub that will be on all pages. I used input elements to create username and password input sections. Used "required" attribute on both the username and password. 
+
+- [ ] **Links** - the "Log In" and "Create Accout" buttons both link to the home page (index.html)
+
+Linked the canvases on the dashboard to the canvas.html file. Also included a "delete" button element for each canvas but planning on making it into an x button with CSS and JS for the functionality 
+
+Home Page button links to index.html
+
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
