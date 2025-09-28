@@ -98,7 +98,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] Simon HTML deployed to prod env
 - [ ] lihgaisufhaewijf
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
+- [ ] **HTML pages** - Formatted the HTML in code pen at first, I made a separate pen for each page
 - [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
 - [ ] **Links** - I did not complete this part of the deliverable.
 - [ ] **Text** - I did not complete this part of the deliverable.
