@@ -94,9 +94,6 @@ I could not access my server using http://startup.emmastartup.com due to my comp
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-**Prerequisites**
-- [x] Simon HTML deployed to prod env
-- [ ] lihgaisufhaewijf
 
 - [ ] **HTML pages** - Formatted the HTML in code pen at first, I made a separate pen for each page
 - [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
