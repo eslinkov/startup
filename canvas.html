@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoCreate - Canvas Name</title>
+  </head>
+  
+  <body>
+    <header>
+        <div style="display: flex; align-items: center; gap: 15px;">
+
+            <a href="dashboard.html"><button>Exit</button></a>
+            <div style="display: flex; align-items: center; gap: 8px;">
+
+                <h3>Canvas Name</h3>
+                <button style="border: none; background: none; cursor: pointer;">
+                    <img src="pencil.png" alt="Edit Name" width="16" />
+                </button>
+            </div>
+
+        </div>
+        <hr />
+
+        <nav id="toolbar">
+
+            <label for="color-selection">Color </label>
+            <input type="color" id="color-selection" value="#000000" />
+            <span style="margin: 0 10 px;">|</span>
+
+            
+            <button><img src="pencil.png" alt="Pen Tool" width="24"/></button>
+            <button><img src="eraser.png" alt="Eraser Tool" width="36" /></button>
+            <span style="margin: 0 10 px;">|</span>
+
+            <button><img src="img.png" alt="Undo" width="24"/></button>
+            <button><img src="img.png" alt="Redo" width="24" /></button>
+
+        </nav>
+
+    </header>
+
+    <main style="display: flex;">
+
+        <canvas id="drawing-board" width="1000" height="600" style="border: 2px solid #ccc;">
+            <p>drawing funtionality here</p>
+        </canvas>
+
+        <aside 
+            id="users" 
+            style="width: 20%; padding-left: 20px;"
+        >
+
+            <h4>Users</h4>
+
+            <ul id="list-users">
+
+                <li>User 1</li>
+                <li>User 2</li>
+                <li>User 3</li>
+
+            </ul>
+
+            <hr />
+            <label for="invite-link">Invite Link:</label>
+            <input
+                type="text"
+                id="invite-link"
+                value="unique invite link here"
+                readonly
+            />
+
+            <button>Copy Link</button>
+        </aside>
+
+    </main>
+
+    <footer>
+        <hr />
+        <span>Emma Slinkov</span>
+        <br />
+        <a href="https://github.com/eslinkov/startup">GitHub</a>
+    </footer>
+
+  </body>
+</html>
