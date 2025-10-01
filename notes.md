@@ -528,6 +528,196 @@ The part I didn't like was the duplication of the header and footer code. This i
 
 ## CSS
 
+## CSS
+
+**3 ways to associate CSS with HTML**
+
+1. Define the `style` attribute of a single element in the HTML file
+
+```html
+<element style="property:value">CSS</element>
+```
+2. Use the HTML `style` ELEMENT to define a CSS rule in the HTML file
+  - `style` element shold appear in the `head` element of the document
+  - that makes it so the rules will apply to each instance of the specified element
+
+```html
+<head>
+  <style>
+    element {
+      property: value;
+    }
+  </style>
+</head>
+
+<body>
+  <p>CSS</p>
+</body>
+```
+
+3. Create a hyperlink reference to an external CSS file that has the CSS rules
+  - hyperlink goes in the head element
+
+  ```html
+  <link rel="stylesheet" href="cssFileName.css" />
+  ```
+
+
+**Format of a CSS rule:**
+
+```selector {
+          property: value;
+}
+```
+
+`:` is a declaration
+
+**Redefine the width and height of an element to also include the padding and border**
+
+--> change `box-sizing` property from `content-box` to `border-box` 
+
+**Box Model Format***
+
+Content -> padding -> border -> margin
+
+
+## CSS Selectors ##
+
+**Make all elements use a specific font**
+
+```css
+body {
+  font-family: font-type;
+}
+```
+
+`body` element will select all the elements of the document. Can also use the `*` to select all the elements
+
+**Modify the top level heading**
+
+```css
+h1 {
+  property: value;
+}
+```
+**Modifying background, padding, and margins of a section**
+
+```css
+section {
+  background: #000000;
+  padding: 1.00em;
+  margin: 0.5em;
+}
+```
+
+margin-bottom or margin-top if you want to be more specific
+
+
+**Making changed within only a specific section of the content**
+
+`descendant combinator`
+
+`>` direct child
+
+`~` sibling of
+
+`+` adjacent sibling of
+
+**Changing a class of an element**
+
+```css
+element.className {
+  property: value;
+}
+```
+
+**Select and make changes to the ID of an element**
+
+```css
+#IDname {
+  property: value;
+}
+```
+
+**Select and change attributes of an element**
+
+```css
+element[attribute='desired value'] {
+  property: value;
+}
+```
+
+can use wildcards before the = in the attribute selector
+
+**Make change appear when the mouse hovers over an element**
+
+```css
+section:hover {
+  property: value;
+}
+```
+
+## CSS Declarations ##
+
+
+| Property           | Value                              | Example             | Discussion                                                                     |
+| ------------------ | ---------------------------------- | ------------------- | ------------------------------------------------------------------------------ |
+| background-color   | color                              | `red`               | Fill the background color                                                      |
+| border             | color width style                  | `#fad solid medium` | Sets the border using shorthand where any or all of the values may be provided |
+| border-radius      | unit                               | `50%`               | The size of the border radius                                                  |
+| box-shadow         | x-offset y-offset blu-radius color | `2px 2px 2px gray`  | Creates a shadow                                                               |
+| columns            | number                             | `3`                 | Number of textual columns                                                      |
+| column-rule        | color width style                  | `solid thin black`  | Sets the border used between columns using border shorthand                    |
+| color              | color                              | `rgb(128, 0, 0)`    | Sets the text color                                                            |
+| cursor             | type                               | `grab`              | Sets the cursor to display when hovering over the element                      |
+| display            | type                               | `none`              | Defines how to display the element and its children                            |
+| filter             | filter-function                    | `grayscale(30%)`    | Applies a visual filter                                                        |
+| float              | direction                          | `right`             | Places the element to the left or right in the flow                            |
+| flex               |                                    |                     | Flex layout. Used for responsive design                                        |
+| font               | family size style                  | `Arial 1.2em bold`  | Defines the text font using shorthand                                          |
+| grid               |                                    |                     | Grid layout. Used for responsive design                                        |
+| height             | unit                               | `.25em`             | Sets the height of the box                                                     |
+| margin             | unit                               | `5px 5px 0 0`       | Sets the margin spacing                                                        |
+| max-[width/height] | unit                               | `20%`               | Restricts the width or height to no more than the unit                         |
+| min-[width/height] | unit                               | `10vh`              | Restricts the width or height to no less than the unit                         |
+| opacity            | number                             | `.9`                | Sets how opaque the element is                                                 |
+| overflow           | [visible/hidden/scroll/auto]       | `scroll`            | Defines what happens when the content does not fix in its box                  |
+| position           | [static/relative/absolute/sticky]  | `absolute`          | Defines how the element is positioned in the document                          |
+| padding            | unit                               | `1em 2em`           | Sets the padding spacing                                                       |
+| left               | unit                               | `10rem`             | The horizontal value of a positioned element                                   |
+| text-align         | [start/end/center/justify]         | `end`               | Defines how the text is aligned in the element                                 |
+| top                | unit                               | `50px`              | The vertical value of a positioned element                                     |
+| transform          | transform-function                 | `rotate(0.5turn)`   | Applies a transformation to the element                                        |
+| width              | unit                               | `25vmin`            | Sets the width of the box                                                      |
+| z-index            | number                             | `100`               | Controls the positioning of the element on the z axis                          |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
 
 Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
