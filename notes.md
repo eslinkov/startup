@@ -746,6 +746,34 @@ p {
 }
 ```
 
+## CSS Animation ##
+
+`animation-duration: #s;` -> specifies how long the animation should last
+
+`animation-name: demo;` -> specifies that we are animating the selected elements
+
+
+
+**Create Keyframes**
+
+`keyframe` -> tells what CSS propertites should be applied at different key points in the animation sequence. Include frames that are called from and to
+
+
+```css
+@keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  95% {
+    font-size: 21vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+}
+```
 
 
 
