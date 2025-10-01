@@ -719,6 +719,32 @@ section:hover {
 | HSL          | `hsl(180, 30%, 90%, 0.5)` | Hue, saturation, and light, with an optional opacity percentage. Hue is the position on the 365 degree color wheel (red is 0 and 255). Saturation is how gray the color is, and light is how bright the color is. |
 
 
+## CSS Fonts ##
+
+`font-family` property
+
+`Serif` `sans-serif` `fixed` `symbol`
+
+**Have browser load a font**
+
+```css
+@font-face {
+  font-family: 'fontName'
+  src: url('link to font source location');
+}
+
+rest of CSS
+```
+
+**Import the Google Font Service**
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap');
+
+p {
+  font-family: 'Rubik Microbe';
+}
+```
 
 
 
@@ -741,12 +767,6 @@ section:hover {
 
 
 
-
-This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
-
-Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
-
-I did like the navbar it made it super easy to build a responsive header.
 
 ```html
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
