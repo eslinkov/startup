@@ -121,12 +121,12 @@ Home Page button links to index.html
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [ ] **Header, footer, and main content body** - Designed using Bootstrap. Completed on home page, dashboard page, canvas page
+- [ ] **Navigation elements** - Home page buttons navigate to the dashboard or the login page. Dashboard page buttons and project icons navigate to the home page and canvas page. 
+- [ ] **Responsive to window resizing** - Completed on home page, dashboard page, canvas page
+- [ ] **Application elements** - I used very minor amoutns of JS to show some of the interactivity of elements on the canvas page.
+- [ ] **Application text content** - set a standard font for the whole application
+- [ ] **Application images** - Used Bootstrap's 
 
 ## 🚀 React part 1: Routing deliverable
 
