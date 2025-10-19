@@ -526,7 +526,7 @@ This was easy. I was careful to use the correct structural elements such as head
 
 The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
 
-## CSS
+
 
 ## CSS
 
@@ -796,8 +796,39 @@ Placement:
     <link rel="stylesheet" href="dashboard.css" />
 ```
 
+## CSS Bootstrap classes ##
+
+`d-flex` class: transforms an element into a "flex container," causing its children to line up horizontally in a row by default. It's the foundation of modern layouts in Bootstrap because it unlocks powerful alignment and spacing classes. Use it whenever you need to position a group of elements, such as creating toolbars or centering content on a page.
+
+  `d-flex` spacing classes:
+    - `justify-content-center` class for horizontal control
+    - `align-items-center` class for vertical control
+    - `justify-content-between`
+
+`flex-nowrap` class: a Bootstrap class that explicitly tells the flex container: "Do not wrap your children to the next line. Keep them all in a single horizontal row, no matter what."
+
+`.d-none` class: a Bootstrap utility that completely hides an element from the page. It doesn't just make it invisible; it removes the element from the layout entirely, so it takes up absolutely no space, as if it never existed. Its primary function is for creating content that you plan to show or hide dynamically with JavaScript, such as toggling a menu or revealing an edit form when a button is clicked.
+
+`flex-grow-1` class: makes the chosen section fill the available vertical space
+
+`flex-column` class: 
+
+`position-relative` class: 
+
+`vh-100` class: locks the total height of your page to exactly 100% of the viewport height.
+
+list-unstyled to remove bullet points
+
+form-control to style the input
+
+input-group to neatly combine the input and button into a single unit.
+
+position: absolute): This lifts the sidebar out of the normal layout and allows us to place it on top of other content
+
+transform: translateX(100%)): This CSS rule pushes the entire sidebar to the right by 100% of its own width, effectively moving it just out of sight.
 
 
+Showing (.is-open): When we add the .is-open class (which we'll do with JavaScript next), the transform is set back to translateX(0), and the transition property makes it animate smoothly back into view.
 
 
 
