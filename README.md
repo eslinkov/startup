@@ -121,12 +121,12 @@ Home Page button links to index.html
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - Designed using Bootstrap. Completed on home page, dashboard page, canvas page
-- [ ] **Navigation elements** - Home page buttons navigate to the dashboard or the login page. Dashboard page buttons and project icons navigate to the home page and canvas page. 
-- [ ] **Responsive to window resizing** - Completed on home page, dashboard page, canvas page
-- [ ] **Application elements** - I used very minor amoutns of JS to show some of the interactivity of elements on the canvas page.
-- [ ] **Application text content** - set a standard font for the whole application
-- [ ] **Application images** - Used Bootstrap's 
+- [x] **Header, footer, and main content body** - Designed using Bootstrap. Completed on home page, dashboard page, canvas page, login page
+- [x] **Navigation elements** - Home page buttons navigate to the dashboard or the login page. Dashboard page buttons and project icons navigate to the home page and canvas page. Login page routes to the home page. All navigation elements work
+- [x] **Responsive to window resizing** - Completed on home page, dashboard page, canvas page, login page. Used flex box to help with this
+- [x] **Application elements** - I used very minor amoutns of JS to show some of the interactivity of elements on the canvas page. Styled buttons and forms to how I wanted them to look. I made a side bar on the canvas page that pops up from the side of the screen when the icon at the top of the page is clicked and will go away once the icon is clicked again. I also restyled the default appearance of some of the elements like the color selector and the size adjustor bar. 
+- [x] **Application text content** - set a standard font for the whole application, correctly aligned and centered text where I wanted them to be placed
+- [x] **Application images** - Used Bootstrap's icon library to make some of the selections into symbols rather than just a button
 
 ## 🚀 React part 1: Routing deliverable
 

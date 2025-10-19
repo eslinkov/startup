@@ -4,6 +4,17 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.custom-square {
+    
+    width: 350px;
+
+    
+    max-width: 90%;
+
+    
+    aspect-ratio: 1 / 1;
+}
+
 .bg-custom-light-pink {
     background-color: #ffc0cb;
 }
