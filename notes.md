@@ -775,6 +775,26 @@ p {
 }
 ```
 
+**CSS Files**
+
+1- main.css
+
+2- dashboard.css
+
+3- canvas.css
+
+4- login.css
+
+Each html file will reference main.css and their own css file
+
+Placement:
+
+```css
+    <title></title>
+
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+```
 
 
 
