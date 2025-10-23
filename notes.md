@@ -1276,6 +1276,23 @@ const <objectInstance> = require('<package-name>');
 });
 ```
 
+## Debugging JavaScript
+
+**Console debugging**
+
+Insert `console.log` functions in the index.js file that output the state of the code as it executes
+
+`F12` menu in browser can tell you the results of the JS code
+
+You can execute JS directly in the console window
+  - change variables
+  - print current value of a variable
+
+**Browser debugging**
+
+
+
+
 
 
 
