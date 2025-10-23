@@ -528,7 +528,7 @@ The part I didn't like was the duplication of the header and footer code. This i
 
 
 
-## CSS
+# CSS 
 
 **3 ways to associate CSS with HTML**
 
