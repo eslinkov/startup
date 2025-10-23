@@ -1160,10 +1160,121 @@ Deliminate code by ending statements with a semicolon and grouping code blocks i
   - `onclick` automaically creates event listeners for different DOM events that call the code contained in the attribute's value. 
   - Can use the `onclick` attribute to call Javascript functions on an element 
 
+## Node.js ##
+
+**What is it?**
+
+Application for deploying Javascript outside of a browser.
+
+Node.js takes the V8 execution engine that browsers run, and ran it insude of a console application. 
+
+V8 reads the code and executes it when you run a JS program in Chrome of Node.js
+
+**Installing Node.js**
+
+Check if installed -> `node -v` in terminal
+
+**Running programs**
+
+Execute a line of Javascript with Node.js from your console with the `-e` parameter
+
+`node -e "javascript code"`
+
+**Run the project Javascript File**
+
+1. Create a single starting JavaScript file
+  - name it `index.js`
+  - this file will reference the code found in the rest of the project
+
+2. Execute the JS by passing the file to `node`
+  - `node index.js`
 
 
+**Node package manager**
+
+Use preexisting packages of JS for implementing common tasks
+
+**Steps to load package:**
+
+1.  install the package locally on your machine using the Node Package Manager (NPM)
+  - NPM is already installed when you install Node.js
+
+2.  include a `require` statement in your code that references the package name.
+
+**NPM:**
+  - Can access massive repository of preexisting packages
+  - packages: [link](https://www.npmjs.com/) 
+
+**Initialize code to use NPM:**
+
+1. Create a directory that will contain JS
+  - `mkdir npmdirectory`
+
+2. Go inside the directory and Run `npm init`
+
+3. Answer questions about project, press enter for defaults 
+  - `npm init -y` sets all to default
+
+**Package.json**
+
+A file that is found in the NPM directory you create. 
+
+It contains 3 things:
+
+1. Metadata about your project such as its name and the default entry JavaScript file
+
+2. commands (scripts) that you can execute to do things like run, test, or distribute your code
+
+3. packages that this project depends upon
+
+```json
+{
+  "name": "npmtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
+```
+
+Dependencies - the packages that you have installed
 
 
+**Install/uninstall a node package**
+
+```sh
+➜  npm install <package name>
+➜  npm uninstall <package name>
+```
+
+
+`package-lock.json` file tracks the version of the package that you installed. That way if you rebuild your node_modules directory you will have the version of the package you initially installed and not the latest available version, which might not be compatible with your code
+
+`node_modules` directory: Installed into project directory when you install packages, contains the actual JavaScript files for the package and all of its dependent packages
+  - include in `.gitignore` file
+
+
+Run `npm install` in project directory after cloning source code from GitHub into my project. It downloads all of the previously installed packages and recreates the `node_modules` directory
+
+**Using the package**
+
+In the JavaScript file reference the package name as a parameter to the `require` function
+
+Call object functions in the pacage. 
+
+index.js
+
+```js
+const <objectInstance> = require('<package-name>');
+<objectInstance>.<packageFunction>((<parameter>) => {
+  console.log(<parameter>);
+});
+```
 
 
 
