@@ -753,6 +753,177 @@ p {
 `animation-name: demo;` -> specifies that we are animating the selected elements
 
 
+## Responsive Design ##
+
+Let's you make it so the interface can reconfigure to screen size and orientation
+
+**CSS Display Properties**: lets you change how an HTML element is displayed by the browser
+
+
+| Value  | Meaning                                                                                                                      |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| none   | Don't display this element. The element still exists, but the browser will not render it.                                    |
+| block  | Display this element with a width that fills its parent element. A `p` or `div` element has block display by default.        |
+| inline | Display this element with a width that is only as big as its content. A `b` or `span` element has inline display by default. |
+| flex   | Display this element's children in a flexible orientation.                                                                   |
+| grid   | Display this element's children in a grid orientation.                                                                       |
+
+Where to use them:
+  - include them as a class in a div
+  - `<div class="property"><div>`
+  - If no display property classes are included, the default display property of a div is `block`
+
+**Viewport meta tag**
+
+Tells browsers not to scale the page and get in the way of responsive screen sizing
+
+`<meta name="viewport" content="width=device-width,initial-scale=1" />`
+
+**Float**
+
+Moves an element to the left or right of its container element and allows inline elements to wrap around it. Use this if you need to wrap text around a different thing on the page
+
+```CSS
+element {
+  float: (right or left);
+}
+```
+
+**Media Queries**
+
+`@media` selector
+
+Dynamically detects the size and orientation of the device and applies CSS rules to represent the structure of the HTML in a way that accommodates the change
+
+Tells us if the screen is oriendted in portrait mode or not
+
+```css
+@media (orientation: portrait) {
+  div {
+    transform: rotate(270deg);
+  }
+}
+```
+
+Make a piece of the application disappear or move somewhere else if it takes up too much space after resizing
+
+```css
+@media (orientation: portrait) {
+  element {
+    display: none;
+  }
+}
+```
+
+## Grid ##
+
+Display layout to use when you want to display a group of child elements in a responsive grid
+
+Turn a container element `<div>` that has a bunch of child elements into a responsive grid:
+  - Assign the container div a class of container `<div class="container"></div>`
+  - include a CSS display property with the value of `grid` on the container element
+
+  ```css
+  .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  grid-gap: 1em;
+  }
+  ```
+  - tells the browser that all of the children of this element are to be displayed in a grid flow
+  - `grid-template-columns` specifies the layout of the grid columns
+  - `grid-auto-rows` fixes the height of the rows to be a specific number of pixels
+  -`grid-gap` sets the gap space in # em
+
+
+## CSS Flexbox ##
+
+`flex` display
+  - useful when you want to partition your application into areas that responsively move around as the window resizes or the orientation change
+
+Make the body element into a responsive flexbox:
+  - include CSS `display` property with the value of `flex` in the CSS file. Tells browser all the children of the body are displayed in flex flow
+
+  ```css
+  body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+  }
+  ```
+  - `flex-direction` specify if you want the flexbox children to be column or row oriented
+  - other stuff helps to zero out margin and fill the entire page with the application
+
+Add these flexbox properties to get the division of space for the flexbox children correct:
+
+  - **header** - `flex: 0 80px` - Zero means it will not grow and 80px means it has a starting basis height of 80 pixels. This creates a fixed size box.
+  - **footer** - `flex: 0 30px` - Like the header it will not grow and has a height of 30 pixels.
+  - **main** - `flex: 1` - One means it will get one fractional unit of growth, and since it is the only child with a non-zero growth value, it will get all the remaining space. Main also gets some additional properties because we want it to also be a flexbox container for the controls and content area. So we set its display to be `flex` and specify the `flex-direction` to be row so that the children are oriented side by side.
+
+```css
+header {
+  flex: 0 80px;
+  background: hsl(223, 57%, 38%);
+}
+
+footer {
+  flex: 0 30px;
+  background: hsl(180, 10%, 10%);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+```
+
+  - the number value for `flex` can determine what percent of the screen the children elements will take up
+
+
+**Flexbox on Small screen sizes:**
+
+Include these 2 queries:
+
+```css
+@media (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+}
+```
+  - detects when we are in portrait orientation.
+  - `flex-direction` will change the orientation of main to column or row whichever is specified
+  - Makes the children of main be stacked on top of each other instead of being side by side when the app is on a small screen
+
+```css
+@media (max-height: 700px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
+```
+  - This query makes the header and footer disappear when the screen is too short to display them. 
+  - `max-height: #px` if the screen size is less than specified number of pixels, the query is triggered and the header and footer is hidden
+  - `display: none` hides the element
+
+
+
+
+
+
+
+
+
+
+
+
 
 **Create Keyframes**
 
