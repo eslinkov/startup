@@ -967,7 +967,33 @@ Placement:
     <link rel="stylesheet" href="dashboard.css" />
 ```
 
+## CSS Frameworks ##
+
+**Tailwind**
+
+**Bootstrap**
+
+Include this below the footer at the end of the HTML body to use Bootstrap components that require JavaScript
+
+```css
+<body>
+  ...
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+```
+
+Include Bootstrap in your HTML page using NPM
+
+```css
+npm install bootstrap@5.3.3
+```
+
 ## CSS Bootstrap classes ##
+
+`btn` class: a simple button
+
+`btn-primary` class: shades the button with the current primary color for the application. 
 
 `d-flex` class: transforms an element into a "flex container," causing its children to line up horizontally in a row by default. It's the foundation of modern layouts in Bootstrap because it unlocks powerful alignment and spacing classes. Use it whenever you need to position a group of elements, such as creating toolbars or centering content on a page.
 
@@ -1054,6 +1080,104 @@ I also used SVG to make the icon and logo for the app. This turned out to be a p
   <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="72" font-family="Arial" fill="white">C</text>
 </svg>
 ```
+
+
+# JavaScript & Web Frameworks
+
+## Javascript ##
+
+What is it?
+
+Most used programming language in the world. Runs on every web browser.
+
+Executed using an interpreter at runtime instead of compiling it into a machine specific binary at build time.
+
+There are different versions of Javascript, and you should be aware of browser compatibility with the version you are using
+
+**Javascript examples**
+
+Concatenate strings together:
+
+```js
+'Hello' + ' ' + 'world';
+```
+
+Output something to the debugger console:
+
+```js
+console.log('output');
+```
+
+Writing functions:
+
+```js
+function functionName(parameter, parameter) {
+  return value;
+}
+
+// call function
+console.log(functionName(parameter, parameter));
+```
+
+Deliminate code by ending statements with a semicolon and grouping code blocks in curly braces
+
+**Open a Javascript interpreter**
+
+  - `F12` while in browser displays the browsers debugger, select `Console` menu option
+
+
+** Add Javascript to HTML **
+
+3 ways:
+
+1. Script block: Directly including the JS code it in the HTML within the content of a `<script>` element
+
+  ```html
+  <script>
+    function sayGoodbye() {
+      alert("Goodbye");
+    }
+  </script>
+  ```
+
+2. External code: Using the `src` attribute of the script element in the HTML to reference an external JavaScript file. References are places in the `<head>`
+
+  ```html
+  <head>
+    <script src="index.js"></script>
+  </head>
+  ```
+
+3. Inline event attribute: Putting JavaScript directly inline an HTML element as part of an event attribute handler.
+
+  ```html
+    <script>
+      let i = 1;
+    </script>
+    <button onclick="alert(`i = ${i++}`)">counter</button>
+  ```
+
+  - `onclick` automaically creates event listeners for different DOM events that call the code contained in the attribute's value. 
+  - Can use the `onclick` attribute to call Javascript functions on an element 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## React Part 1: Routing
 
