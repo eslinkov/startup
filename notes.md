@@ -625,6 +625,10 @@ margin-bottom or margin-top if you want to be more specific
 
 **Changing a class of an element**
 
+`.className` selects by element class
+
+
+
 ```css
 element.className {
   property: value;
@@ -632,6 +636,8 @@ element.className {
 ```
 
 **Select and make changes to the ID of an element**
+
+`#IDname` selects by element ID
 
 ```css
 #IDname {
@@ -1290,7 +1296,36 @@ You can execute JS directly in the console window
 
 **Browser debugging**
 
+Use source tab in browser debugger, it displays the course files that comprise the currently rendered content
 
+## Debugging Node.js ##
+
+VS Code: `F5` executes the debug menu, use the `Node.js` debugger
+
+
+## Routing ##
+
+Set up NPM and install Vite
+
+`npm init -y`
+
+`npm install vite@latest -D`
+
+Add the `node_modules` to the gitignore file
+
+package.json file script commands for running Vite, it won't run if you don't change this 
+
+```json
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+```
+
+React Bootstrap - wraps Bootsrtap CSS framework in React components 
+
+`npm install bootstrap react-bootstrap`
 
 
 
@@ -1362,13 +1397,51 @@ hello
 
 
 
+Padding: applies to spacing between the element and its border
+
+Margin: applies to spacing between the border and other adjscent elements
+
+Display an image with a hyperlink in HTML
+
+```html
+<a href="http://mylink.com"><img src="http://imagelink.com/pic.png" /></a>
+```
+
+CSS box model order inside -> outside: content, padding, border, margin
 
 
+JS select an element and change the text color of selected element: `document.getElementById('<element>').style.color = '<color>'`
 
 
+JavaScript if statement syntax: `if (<condition>)`
 
+`===` strict equality operator, checks condition without type coercion
 
+Javascript create function syntax
 
+Function declaration: `function <name>(<params>) {}`
+
+Arrow function expression:
+
+Function expression: `const <variableName> = <funcName>(<params>) {}`
+
+Create Javascript object: `let <varName> = {<key>: <value>, <key>: <value>};`
+
+Javascript objects are dynamic
+
+`document.querySelector()`: finds first element that matches the provided CSS
+
+`p.demo` selector: specifically targets an element that is a `<p>` tag and the class demo
+
+`.textContent =`: sets selected content equal to a new value
+
+JSON objects contain attribute-value pairs
+
+a server can use the JSON format to send a web browser some data
+
+Remote shell command: `ssh`
+
+`-la` parameter: outputs all files, outputs a long listing 
 
 
 
