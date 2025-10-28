@@ -1303,7 +1303,7 @@ Use source tab in browser debugger, it displays the course files that comprise t
 VS Code: `F5` executes the debug menu, use the `Node.js` debugger
 
 
-## Routing ##
+# Routing #
 
 Set up NPM and install Vite
 
@@ -1327,7 +1327,29 @@ React Bootstrap - wraps Bootsrtap CSS framework in React components
 
 `npm install bootstrap react-bootstrap`
 
+Put this import statement at the top of `.js` or `.jsx` files, it imports the CSS into the Javascript so Vite can handle it
 
+`import 'bootstrap/dist/css/bootstrap.min.css';`
+
+`npm install react react-dom react-router-dom` - console command to install React
+
+
+## React Bootstrap Components
+
+*Button* 
+
+```jsx
+import Button from 'react-bootstrap/Button';
+
+export function NavButton({ text, url }) {
+  const navigate = useNavigate();
+  return (
+    <Button variant="primary" onClick={() => navigate({ url })}>
+      {text}
+    </Button>
+  );
+}
+```
 
 
 
