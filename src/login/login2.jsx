@@ -3,27 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './login.css';
 import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 
-
 export function Login() {
-  const navigate = useNavigate();
-
-  function handleLogin(event) {
-    event.preventDefault();
-    // check username/password
-    navigate('/home');
-  }
-
-  function handleRegister(event) {
-    event.preventDefault();
-    // create the user
-    navigate('/home'); 
-  }
-
-
-
-
   return (
-   
+    // We use a React.Fragment <></> because you have multiple
+    // top-level elements (header, main, footer).
+    // The classes from your <body> tag for layout (d-flex, etc.)
+    // will need to be applied to a top-level <div> in your app.jsx
+    // or on index.html's <body> tag. For now, let's focus on content.
+
     <React.Fragment>
       <header className="p-4">
         <div className="d-flex justify-content-between align-items-center position-relative">
@@ -37,7 +24,7 @@ export function Login() {
             <div className="login-box bg-custom-light-pink rounded-3 p-4 text-center">
               <section id="login-form">
                 <h2 className="mb-4">Login</h2>
-                <form onSubmit={handleLogin}>
+                <form action="home.html" method="get">
                   <div className="mb-3 text-start">
                     <label htmlFor="login-username" className="form-label">
                       Username:
@@ -78,7 +65,7 @@ export function Login() {
             <div className="login-box bg-custom-light-pink rounded-3 p-4 text-center">
               <section id="register-form">
                 <h2 className="mb-4">Create Account</h2>
-                <form onSubmit={handleRegister}>
+                <form action="home.html" method="get">
                   <div className="mb-3 text-start">
                     <label htmlFor="register-username" className="form-label">
                       Username:

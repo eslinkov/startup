@@ -87,7 +87,7 @@ body {
   color: #495057;
   background-color: transparent; 
   transition: background-color 0.2s ease-in-out;
-  text-decoration: none;/
+  text-decoration: none;
 }
 
 .tool-icon:hover {
@@ -110,6 +110,9 @@ body {
   background-color: #ffffff;
 }
 
+.canvas-container {
+  height: 75vh;
+}
 
 .collaboration-sidebar {
   position: absolute;
@@ -135,5 +138,5 @@ body {
 
 .app-window {
   
-  overflow: hidden;
+  
 }
