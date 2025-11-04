@@ -132,9 +132,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - Installed Vite to be the development server and build tool, I used `npm run dev` to run my project
+- [x] **Components** - I converted all my static HTML files (login.html, home.html, dashboard.html, canvas.html) into React components. I had to refactor some of my Javascript in the canvas.html file to be compatible with React. The `useState` hooks were to manage things like which tool was selected
+- [x] **Router** - I implemented this with the `react-router-dom` provided in the instruction. I used a `<BrowserRouter>` in the app.jsx file that defines all the routes for my application like /, /home etc. I also changed the navigation elements to NavLink components.
 
 ## 🚀 React part 2: Reactivity deliverable
 
