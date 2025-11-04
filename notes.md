@@ -1368,11 +1368,279 @@ export function NavButton({ text, url }) {
 
 Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
 
-## React Part 2: Reactivity
+# React Part 2: Reactivity
 
 This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
 
 Handling the toggling of the checkboxes was particularly interesting.
+
+## JavaScript Console
+
+`console.log(<message>)` -> Log
+
+*Timers* 
+
+See how long a piece of code is running for, wrap in time and timeEnd calls
+
+```js
+console.time('demo time');
+for (let i = 0; i < 10000000; i++) {}
+// code that takes a while
+console.timeEnd('demo time');
+// outputs the demo time seconds
+```
+
+*Count*
+
+See how many times block of code is called
+
+```js
+console.count(<code reference>);
+```
+
+## JavaScript Functions
+
+*Syntax*
+
+```js
+funciton name(params) {
+  return value;
+}
+```
+
+Functions can either return a variable, or execute the commands inside the function when it is called.
+
+`function name (value, defaultValue = 'default')` -> define a default value within a function that is used when a parameter isn't defined in the function's call
+
+Functions can:
+- take a function as a parameter
+- be assigned to a variable
+- be assigned to a parameter
+- be executed within other functions
+- return a function
+- assign values to other functions
+- call a function that is being returned from another function
+
+Anonymous function
+- Define the function first then assign to a variable
+- use abbreviated arrow syntax `=>` to write anonymous function
+
+## Javascript Arrow Function
+
+Gets rid of the `function` declaration part and only uses the parameters to construct
+
+Good for use in React components 
+
+syntax:
+
+`(<parameters>) => <return value>`
+
+Return values:
+- `=> <value>` returns the value
+- `=> {<value>;};` returns undefined
+- `=> { return <value>;};` returns the value
+
+
+*Closures*
+- allows a function to reference its creation scope
+- returns the arrow function that includes the closure of variables that existed when it was created
+- useful when executing JS within the scope of an HTML page, since it remembers the values of variables that were in scope when the function was created
+
+
+## Arrays
+
+Array functions:
+
+| Function | Meaning                                                   | Example                       |
+| -------- | --------------------------------------------------------- | ----------------------------- |
+| push     | Add an item to the end of the array                       | `a.push(4)`                   |
+| pop      | Remove an item from the end of the array                  | `x = a.pop()`                 |
+| slice    | Return a sub-array                                        | `a.slice(1,-1)`               |
+| sort     | Run a function to sort an array in place                  | `a.sort((a,b) => b-a)`        |
+| values   | Creates an iterator for use with a `for of` loop          | `for (i of a.values()) {...}` |
+| find     | Find the first item satisfied by a test function          | `a.find(i => i < 2)`          |
+| forEach  | Run a function on each array item                         | `a.forEach(console.log)`      |
+| reduce   | Run a function to reduce each array item to a single item | `a.reduce((a, c) => a + c)`   |
+| map      | Run a function to map an array to a new array             | `a.map(i => i+i)`             |
+| filter   | Run a function to remove items                            | `a.filter(i => i%2)`          |
+| every    | Run a function to test if all items match                 | `a.every(i => i < 3)`         |
+| some     | Run a function to test if any items match                 | `a.some(i => i < 1)`          |
+
+
+## Objects
+
+Objects:
+- collection of name value pairs `properties`
+- Property name must be String or Symbol
+- Value can be any data type
+- Has constructors
+- Has a `this` pointer
+- Static properties and functions
+- inheritance
+- dynamically modifyable
+
+Create an object:
+
+```js
+const <objectName> = new Object(<properties>);
+```
+
+Reference the properties of an object:
+
+```js
+obj.property = <value>;
+obj['property'] = <value>;
+```
+
+Create an object-literal:
+
+```js
+const obj {
+  property: int,
+  property: string,
+  property: function {},
+  property: true,
+};
+```
+
+*Object Functions*
+
+| Function | Meaning                             |
+| -------- | ----------------------------------- |
+| entries  | Returns an array of key value pairs |
+| keys     | Returns an array of keys            |
+| values   | Returns an array of values          |
+
+`Object.entries(obj);`
+
+*Constructor*
+
+Any function that returns an object is a constructor, and is called with the `new` operator
+
+```js
+const <var> = new Object('value');
+```
+
+*This Pointer*
+
+Refers to a pointer to the object, is dependedn on the scope of where it is used
+
+## Classes
+
+Use to define objects
+
+Creates a reusable component rather than a single object
+
+Contains an explicit constructur and function declarations
+
+*Creating a class*:
+
+`Object` can be whatever name you want to give your class
+
+```js
+class Object {
+  constructor(property) {
+    this.property = property;
+  }
+
+  function() {
+    // action the function performs
+  }
+
+}
+
+const obj = new Object('passed in property');
+obj.function();
+```
+
+`extends` -> create extensions / children of a parent function
+
+`super` -> super. or super() prefix any parameter that need to be passed on to the parent classes from within a child function
+
+
+## Descructuring
+
+Can do this on arrays or objects
+
+Useful if you only care about a few items in the original structure
+
+Used a lot in React
+
+*Descructure an array*
+
+```js
+const a = [1, 2, 4, 5];
+
+// destructure the first two items from a, into the new variables b and c
+const [b, c] = a;
+
+console.log(b, c);
+// OUTPUT: 1, 2
+```
+
+*Combine multiple items from the original object*
+
+```js
+const [b, c, ...others] = a;
+
+console.log(b, c, others);
+// OUTPUT: 1, 2, [4,5]
+```
+
+*Destructuring objects*
+
+Must explicitly specift the properties you want to pull from the source object
+
+```js
+const o = { a: 1, b: 'animals', c: ['fish', 'cats'] };
+
+const { a, c } = o;
+
+console.log(a, c);
+// OUTPUT: 1, ['fish', 'cats']
+```
+
+*Map names to new variables*
+
+Changes the reference name
+
+```js
+const o = { a: 1, b: 'animals', c: ['fish', 'cats'] };
+
+const { a: count, b: type } = o;
+
+console.log(count, type);
+// OUTPUT: 1, animals
+```
+
+
+*React Clicker Example*
+
+
+
+```jsx
+function Clicker({ initialCount }) {
+  const [count, updateCount] = React.useState(initialCount);
+  return <div onClick={() => updateCount(count + 1)}>Click count: {count}</div>;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clicker initialCount={3} />);
+```
+
+`initialCount` -> object is destructured to just the initialCount parameter
+
+`React.useState` -> return value from this destructures the array to just the variable and the update function
+
+
+
+
+
+
+
+
+
+
 
 ```jsx
 <div className="input-group sound-button-container">
