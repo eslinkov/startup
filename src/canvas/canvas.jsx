@@ -8,6 +8,9 @@ export function Canvas({ currentUser }) {
   const [activeTool, setActiveTool] = useState('brush');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const [brushColor, setBrushColor] = useState('#000000'); //color variable
+  const [brushSize, setBrushSize] = useState(10); // brush size variable
+
   const handleEditNameClick = () => {
     setIsEditingName(true);
   };
@@ -103,25 +106,33 @@ export function Canvas({ currentUser }) {
             <label htmlFor="color-picker" className="form-label me-2 mb-0">
               Color:
             </label>
+
             <input
               type="color"
               className="form-control form-control-color"
               id="color-picker"
-              defaultValue="#000000"
+              value={brushColor}
+              onChange={(e) => setBrushColor(e.target.value)}
+              
             />
+
           </div>
 
           <div className="me-4 d-flex align-items-center">
             <label htmlFor="brush-size" className="form-label me-2 mb-0">
               Brush Size:
             </label>
+
             <input
               type="range"
               className="form-range"
               min="1"
               max="100"
               id="brush-size"
+              value={brushSize}
+              onChange={(e) => setBrushSize(e.target.value)}
             />
+
           </div>
 
           <div className="me-4">
