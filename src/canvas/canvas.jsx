@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './canvas.css';
 
@@ -10,6 +10,57 @@ export function Canvas({ currentUser }) {
 
   const [brushColor, setBrushColor] = useState('#000000'); //color variable
   const [brushSize, setBrushSize] = useState(10); // brush size variable
+
+  const [isDrawing, setIsDrawing] = useState(false);
+  const canvasRef = useRef(null); // box for the canvas html
+
+  const contextRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    // canvas.width = canvas.offsetWidth;
+    // canvas.height = canvas.offsetHeight;
+
+    const context = canvas.getContext('2d'); // for returning the drawing API
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    contextRef.current = context;
+  }, []);
+
+  function startDrawing(e) {
+    e.preventDefault();
+    const context = contextRef.current;
+    context.beginPath();
+    context.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    setIsDrawing(true);
+  }
+
+  function stopDrawing() {
+    contextRef.current.closePath();
+    setIsDrawing(false);
+  }
+
+  function draw(e) {
+    if (!isDrawing) {
+      return;
+    }
+
+    const context = contextRef.current;
+
+    if (activeTool === 'eraser') {
+      context.globalCompositeOperation = 'destination-out'; // This "erases"
+    } else {
+    context.globalCompositeOperation = 'source-over'; // This "draws"
+    context.strokeStyle = brushColor;
+    }
+
+    context.lineWidth = brushSize; 
+    context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY); 
+    context.stroke();
+  }
+
+
 
   const handleEditNameClick = () => {
     setIsEditingName(true);
@@ -152,7 +203,16 @@ export function Canvas({ currentUser }) {
       </header>
 
       <main className="position-relative canvas-container">
-        <canvas id="drawing-board" className="drawing-canvas">
+
+        <canvas 
+          ref={canvasRef} // tells canvas to put itself in the ref box
+          onMouseDown={startDrawing}
+          onMouseUp={stopDrawing}
+          onMouseMove={draw}
+          onMouseLeave={stopDrawing}
+          id="drawing-board" 
+          className="drawing-canvas"
+        >
           Your browser does not support the HTML canvas element.
         </canvas>
 
