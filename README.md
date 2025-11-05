@@ -140,8 +140,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Implemented all core app functionality
+    - Login functions that are passed to other pages
+    - `dashboard.jsx` component uses a `useEffect` to serve as a placeholder for canvases stored in a database specific to each user. 
+    - Interactive canvas: The canvas component is a fully functional drawing component. I used React's built in `onMouseDown`, `onMouseMove`, and `onMouseUp` events to create the functionality. 
+    - Websocket placeholder: I used a `setInterval` within a hook to simulate how the users in session list will update as users leave and join. 
+- [x] **Hooks** - I used Reach hooks to manage the states and handle side effects
+    - `useState` is present in all components to manage local states
+    - `useEffect` for various events such as checking local storage, fetching the placeholder lists, getting the canvas 2D, and setting up the timer for the WebSocket placeholder. 
+    - `useRef`: I used this in the canvas component to refer to the `<canvas>` html element which made it easier to access for the drawing functions. 
+    - `useNavigate`: handles the switching of pages when a user logs in or out
 
 ## 🚀 Service deliverable
 
