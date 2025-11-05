@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './canvas.css';
 
-export function Canvas() {
+export function Canvas({ currentUser }) {
   const [isEditingName, setIsEditingName] = useState(false);
   const [canvasName, setCanvasName] = useState('Canvas Name');
   const [activeTool, setActiveTool] = useState('brush');
@@ -154,9 +154,9 @@ export function Canvas() {
           <h4 className="mb-3">Users in Session</h4>
 
           <ul id="user-list" className="list-unstyled">
-            <li className="d-flex align-itemsD-center mb-2">
-              <i className="bi bi-person-check-fill me-2 text-success"></i>User 1
-              (You)
+            <li className="d-flex align-items-center mb-2">
+              <i className="bi bi-person-check-fill me-2 text-success"></i>
+              {currentUser} (You)
             </li>
             <li className="d-flex align-items-center mb-2">
               <i className="bi bi-person-fill me-2"></i>User 2
