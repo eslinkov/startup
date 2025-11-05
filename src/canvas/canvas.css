@@ -138,5 +138,5 @@ body {
 
 .app-window {
   
-  
+  overflow-x: hidden;
 }
