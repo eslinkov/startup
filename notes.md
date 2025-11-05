@@ -1614,9 +1614,80 @@ console.log(count, type);
 ```
 
 
-*React Clicker Example*
+*setTimeout* 
+
+Allows you to delay the execution of something until after a certain period has expired
+
+*setInterval*
+
+Function that allows you to execute a block of code periodically at a given time interval
+
+Cancel a setInterval request by capturing the result of the setInterval call and passing it to the clearInterval function
+
+## React hooks
+
+*What they are*: special functions that let you "hook into" React features from your simple function components.
+
+*The `useEffect` Hook*
+
+Function: run code after your component has rendered
+
+Cases of use:
+- run code only once when the component first loads
+- run code only when a specific value changes
+- run "cleanup" code when the component is destroyed
+
+*Rules*:
+- Always call hooks at the top level of your function
+- Never call hooks inside if statements, loops, or other nested functions
+- React relies on them being called in the same order every single time the component renders, these rules make sure the order does not change
+
+# Reactivity
+
+*What it is*: the mechanism React uses to automatically update your webpage when your data changes
+
+*Three key pieces*
+
+1. State: This is the data that can change. You use state to store things like the current user, a list of scores, or whether a menu is open.
+
+2. Props: This is the data a parent component passes down to its children.
+
+3. Render: the act of React calling your component function to build the UI. A render is triggered whenever a component's state changes or its props change.
+
+*The one way data flow*
+
+*When to use*: use this pattern when a child component needs to change data that a sibling component needs to read. The pattern keeps app data predictable, the parent is in charge and the children just display data or ask the parent to make changes. 
+
+*UPDATES ARE ASYNCHRONOUS*
+
+When you call an update function, the variable is NOT updated immediately on the next line of your code. 
+
+What really happens is you are just scheduling an update. React batches these requests and processes them "eventually" which is extremely fast, but not instant
+
+This means you can't call an update function and then try to read the variable on the next line expecting it to be the new value. You must trust that React will re-render your component with the new value when it's ready.
 
 
+## JSON
+
+*What it is*: a method of sharing and storing data, and is a very popular data format
+
+*What can it do*: can be converted to and from JS objects
+
+*Format*
+
+| Type    | Example                 |
+| ------- | ----------------------- |
+| string  | "crockford"             |
+| number  | 42                      |
+| boolean | true                    |
+| array   | [null,42,"crockford"]   |
+| object  | {"a":1,"b":"crockford"} |
+| null    | null                    |
+
+
+JSON is always encoded with UTF-8 so it can represent global data
+
+`JSON.parse` and `JSON.stringify` functions allow you to convert JSON to and from JavaScript
 
 ```jsx
 function Clicker({ initialCount }) {
@@ -1634,6 +1705,28 @@ root.render(<Clicker initialCount={3} />);
 
 
 
+
+# LocalStorage API
+
+*Use*: provides the ability to persistently store and retrieve data (i.e. scores, usernames, etc.,) on a user's browser across user sessions and HTML page renderings. Also used as a cache for when data cannot be obtained from the server. Keeps data there even if the page is refreshed or tab is closed
+- Usernames displayed across multiple pages
+- scores
+- Keeping a user logged in
+- Saving a name or user name 
+
+*Functions*
+
+| Function             | Meaning                                      |
+| -------------------- | -------------------------------------------- |
+| setItem(name, value) | Sets a named item's value into local storage |
+| getItem(name)        | Gets a named item's value from local storage |
+| removeItem(name)     | Removes a named item from local storage      |
+| clear()              | Clears all items in local storage            |
+
+
+Local storage values must be string, number, or bool. 
+
+To store JS object or array, convert it to a JSON string with `JSON.stringify()` to pass it, then change it back to JS with `JSON.parse()` when received. 
 
 
 
