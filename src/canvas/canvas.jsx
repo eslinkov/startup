@@ -12,6 +12,9 @@ export function Canvas({ currentUser }) {
   const [brushSize, setBrushSize] = useState(10); // brush size variable
 
   const [isDrawing, setIsDrawing] = useState(false);
+
+  const [sessionUsers, setSessionUsers] = useState(['User 2']);
+
   const canvasRef = useRef(null); // box for the canvas html
 
   const contextRef = useRef(null);
@@ -26,6 +29,26 @@ export function Canvas({ currentUser }) {
     context.lineCap = 'round';
     context.lineJoin = 'round';
     contextRef.current = context;
+  }, []);
+
+  useEffect(() => {
+
+    const intervalId = setInterval(() => {
+      // users joining and leaving placeholder
+      setSessionUsers(currentUsers => {
+        if (currentUsers.includes('User 3')) {
+          
+          return ['User 2'];
+        } else {
+          
+          return ['User 2', 'User 3'];
+        }
+      });
+    }, 4000);
+
+    
+    return () => clearInterval(intervalId);
+
   }, []);
 
   function startDrawing(e) {
@@ -229,12 +252,14 @@ export function Canvas({ currentUser }) {
               <i className="bi bi-person-check-fill me-2 text-success"></i>
               {currentUser} (You)
             </li>
-            <li className="d-flex align-items-center mb-2">
-              <i className="bi bi-person-fill me-2"></i>User 2
-            </li>
-            <li className="d-flex align-items-center mb-2">
-              <i className="bi bi-person-fill me-2"></i>User 3
-            </li>
+
+            {/* dynamically rendering other users */}
+            {sessionUsers.map((user) => (
+              <li className="d-flex align-items-center mb-2">
+                 <i className="bi bi-person-fill me-2"></i>
+                 {user}
+              </li>
+            ))}
           </ul>
 
           <hr className="my-4" />
