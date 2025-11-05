@@ -19,8 +19,8 @@ export function Canvas({ currentUser }) {
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    // canvas.width = canvas.offsetWidth;
-    // canvas.height = canvas.offsetHeight;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 
     const context = canvas.getContext('2d'); // for returning the drawing API
     context.lineCap = 'round';
