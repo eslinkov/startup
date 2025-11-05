@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './login.css';
 import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 
 
-export function Login() {
+export function Login({ onLogin }) {
   const navigate = useNavigate();
 
-  function handleLogin(event) {
+  // values from the input fields on the login screen
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
+
+  function handleLoginSubmit(event) {
     event.preventDefault();
     // check username/password
+    onLogin(loginUsername); // function call from app.jsx
     navigate('/home');
   }
 
-  function handleRegister(event) {
+  function handleRegisterSubmit(event) {
     event.preventDefault();
     // create the user
+    onLogin(registerUsername); // function call from app.jsx
     navigate('/home'); 
   }
 
@@ -37,7 +45,7 @@ export function Login() {
             <div className="login-box bg-custom-light-pink rounded-3 p-4 text-center">
               <section id="login-form">
                 <h2 className="mb-4">Login</h2>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleLoginSubmit}>
                   <div className="mb-3 text-start">
                     <label htmlFor="login-username" className="form-label">
                       Username:
@@ -49,6 +57,7 @@ export function Login() {
                       className="form-control"
                       placeholder="Enter your username"
                       required
+                      onChange={(e) => setLoginUsername(e.target.value)}
                     />
                   </div>
 
@@ -63,6 +72,7 @@ export function Login() {
                       className="form-control"
                       placeholder="Enter your password"
                       required
+                      onChange={(e) => setLoginPassword(e.target.value)}
                     />
                   </div>
 
@@ -78,7 +88,7 @@ export function Login() {
             <div className="login-box bg-custom-light-pink rounded-3 p-4 text-center">
               <section id="register-form">
                 <h2 className="mb-4">Create Account</h2>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleRegisterSubmit}>
                   <div className="mb-3 text-start">
                     <label htmlFor="register-username" className="form-label">
                       Username:
@@ -90,6 +100,7 @@ export function Login() {
                       className="form-control"
                       placeholder="Choose a username"
                       required
+                      onChange={(e) => setRegisterUsername(e.target.value)}
                     />
                   </div>
 
@@ -104,6 +115,7 @@ export function Login() {
                       className="form-control"
                       placeholder="Create a password"
                       required
+                      onChange={(e) => setRegisterPassword(e.target.value)}
                     />
                   </div>
 
