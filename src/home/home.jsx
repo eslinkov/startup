@@ -1,17 +1,26 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import './home.css';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, useNavigate, Route, Routes } from 'react-router-dom';
 
 
-export function Home() {
+export function Home({ currentUser, onLogout }) {
+  const navigate = useNavigate();
+  
+  function handleLogoutClick() {
+    onLogout(); 
+    navigate('/'); // sends user to login page
+  }
+
+
+
   return (
 
     <React.Fragment>
       <div className="d-flex vh-100 flex-column justify-content-center align-items-center">
         <header className="text-center mb-4">
           <p className="position-absolute top-0 start-0 ps-3 pt-2">
-            Welcome, <strong>user</strong>
+            Welcome, <strong>{currentUser}</strong>
           </p>
           <h1 className="display-5">CoCreate</h1>
           <p className="lead">Home</p>
@@ -26,9 +35,9 @@ export function Home() {
               </NavLink>
               <br />
               <br />
-              <NavLink to="/" className="btn btn-light w-75 mb-3">
+              <button to="/" className="btn btn-light w-75 mb-3" onClick={handleLogoutClick}>
                 Log Out
-              </NavLink>
+              </button>
             </menu>
           </nav>
         </main>
