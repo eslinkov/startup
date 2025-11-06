@@ -27,9 +27,6 @@ const apiRouter = express.Router();
 app.use('/api', apiRouter); // tells app to pass api requests to the api router
 
 // =====Service Endpoints===== //
-apiRouter.get('/test', (_req, res) => {
-  res.send({ msg: 'Startup service' });
-});
 
 apiRouter.post('/auth/create', async (req, res) => {
   
@@ -81,6 +78,11 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
+// ===== Service Endpoints ===== //
+
+apiRouter.get('/test', verifyAuth, (_req, res) => {
+  res.send({ msg: 'Startup service' });
+});
 
 // ===== Helper Functionc ===== //
 
