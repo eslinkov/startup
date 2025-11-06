@@ -129,7 +129,7 @@ export function Dashboard({ currentUser, onLogout }) {
                     </div>
                   </NavLink>
 
-                  <button className="btn btn-danger btn-sm delete-button" onClick={(e) => handleDeleteCanvas(e, canvas.id)}>&times;</button>
+                  <button className="delete-button" onClick={(e) => handleDeleteCanvas(e, canvas.id)}>&times;</button>
                 </div>
               ))}
               
