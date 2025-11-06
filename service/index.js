@@ -16,6 +16,8 @@ app.use(express.static('public'));
 // =====In-Memory "Database"===== //
 let users = [];
 const authCookieName = 'token';
+let canvases = [];
+let nextCanvasId = 1;
 
 // =====Service Port===== //
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -68,6 +70,17 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
+
+// ===== Authorization Middleware ===== //
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+};
+
 
 // ===== Helper Functionc ===== //
 
