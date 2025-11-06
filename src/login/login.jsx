@@ -13,20 +13,63 @@ export function Login({ onLogin }) {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
 
-  function handleLoginSubmit(event) {
+  const [displayError, setDisplayError] = useState(null);
+
+  // function handleLoginSubmit(event) {
+  //   event.preventDefault();
+  //   // check username/password
+  //   onLogin(loginUsername); // function call from app.jsx
+  //   navigate('/home');
+  // }
+
+  async function handleLoginSubmit(event) {
     event.preventDefault();
-    // check username/password
-    onLogin(loginUsername); // function call from app.jsx
-    navigate('/home');
+
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: loginUsername,
+        password: loginPassword,
+      }),
+    });
+
+    if (response.ok) {
+      onLogin(loginUsername);
+      navigate('/home');
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
   }
 
-  function handleRegisterSubmit(event) {
-    event.preventDefault();
-    // create the user
-    onLogin(registerUsername); // function call from app.jsx
-    navigate('/home'); 
-  }
+  // function handleRegisterSubmit(event) {
+  //   event.preventDefault();
+  //   // create the user
+  //   onLogin(registerUsername); // function call from app.jsx
+  //   navigate('/home'); 
+  // }
 
+  async function handleRegisterSubmit(event) {
+    event.preventDefault();
+
+    const response = await fetch('/api/auth/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: registerUsername,
+        password: registerPassword,
+      }),
+    });
+
+    if (response.ok) {
+      onLogin(registerUsername);
+      navigate('/home');
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
+  }
 
 
 
@@ -40,6 +83,13 @@ export function Login({ onLogin }) {
       </header>
 
       <main className="container flex-grow-1 d-flex align-items-center">
+        
+        {displayError && (
+          <div className="alert alert-danger" role="alert">
+            {displayError}
+          </div>
+        )}
+
         <div className="row justify-content-center g-4 w-100">
           <div className="col-12 col-md-5">
             <div className="login-box bg-custom-light-pink rounded-3 p-4 text-center">
