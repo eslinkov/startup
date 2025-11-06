@@ -84,6 +84,63 @@ apiRouter.get('/test', verifyAuth, (_req, res) => {
   res.send({ msg: 'Startup service' });
 });
 
+// ===== Canvas App Endpoints ===== //
+
+// gets all canvases
+apiRouter.get('/canvases', verifyAuth, (req, res) => {
+  // filter by user
+  res.send(canvases);
+});
+
+// create new blank canvas
+apiRouter.post('/canvas', verifyAuth, (req, res) => {
+  const newCanvas = {
+    id: nextCanvasId++,
+    name: 'Untitled Canvas',
+    owner: 'tempUser',
+    drawingData: ''
+  };
+  canvases.push(newCanvas);
+  res.send(newCanvas);
+});
+
+// update canvas name or save drawings
+apiRouter.put('/canvas/:id', verifyAuth, (req, res) => {
+  const id = parseInt(req.params.id);
+  const { name, drawingData } = req.body;
+  const canvas = canvases.find(c => c.id === id);
+
+  if (canvas) {
+    if (name) canvas.name = name;
+    if (drawingData) canvas.drawingData = drawingData;
+    res.send(canvas);
+  } else {
+    res.status(404).send({ msg: 'Canvas not found' });
+  }
+});
+
+// delete a canvas
+apiRouter.delete('/canvas/:id', verifyAuth, (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = canvases.findIndex(c => c.id === id);
+  if (index !== -1) {
+    canvases.splice(index, 1);
+    res.status(204).end();
+  } else {
+    res.status(404).send({ msg: 'Canvas not found' });
+  }
+});
+
+// generate the canvas link
+apiRouter.get('/canvas/share/:id', verifyAuth, (req, res) => {
+  const id = parseInt(req.params.id);
+  
+  res.send({ 
+    shareUrl: `https://emmastartup.com/canvas/${id}?token=fake-share-token` 
+  });
+});
+
+
 // ===== Helper Functionc ===== //
 
 async function createUser(username, password) {
