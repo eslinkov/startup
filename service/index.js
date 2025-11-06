@@ -51,6 +51,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
 
     if (await bcrypt.compare(req.body.password, user.password)) {
+      user.token = uuid.v4();
       setAuthCookie(res, user.token);
       res.send({ username: user.username });
       return;
@@ -98,7 +99,7 @@ apiRouter.post('/canvas', verifyAuth, (req, res) => {
     id: nextCanvasId++,
     name: 'Untitled Canvas',
     owner: 'tempUser',
-    drawingData: ''
+    drawingData: []
   };
   canvases.push(newCanvas);
   res.send(newCanvas);

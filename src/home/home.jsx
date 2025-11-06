@@ -7,10 +7,23 @@ import { BrowserRouter, NavLink, useNavigate, Route, Routes } from 'react-router
 export function Home({ currentUser, onLogout }) {
   const navigate = useNavigate();
   
+  // function handleLogoutClick() {
+  //   onLogout(); 
+  //   navigate('/'); // sends user to login page
+  // }
+
   function handleLogoutClick() {
-    onLogout(); 
-    navigate('/'); // sends user to login page
-  }
+  fetch('/api/auth/logout', {
+    method: 'DELETE',
+  })
+  .catch(() => {
+
+  })
+  .finally(() => {
+    onLogout();
+    navigate('/');
+  });
+}
 
 
 
