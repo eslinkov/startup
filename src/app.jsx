@@ -55,7 +55,7 @@ export default function App() {
               element={<Dashboard currentUser={currentUser} onLogout={handleLogout} />}              
             />
             <Route 
-              path='/canvas' 
+              path='/canvas/:id' 
               element={<Canvas currentUser={currentUser} onLogout={handleLogout} />} 
             />
             <Route path='*' element={<NotFound />} />

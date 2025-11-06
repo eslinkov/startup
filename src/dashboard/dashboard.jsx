@@ -7,17 +7,45 @@ export function Dashboard({ currentUser, onLogout }) {
   const navigate = useNavigate();
   const [canvases, setCanvases] = useState([]); // empty array to hold list of canvases
 
-  useEffect(() => { // placeholder for server call
-    const placeholderCanvases = [
-      { id: 1, name: 'My Drawing 1'},
-      { id: 2, name: 'My Drawing 2'},
-      { id: 3, name: 'My Drawing 3'},
-      { id: 4, name: 'My Drawing 4'},
-    ];
+  useEffect(() => { 
+    // const placeholderCanvases = [
+    //   { id: 1, name: 'My Drawing 1'},
+    //   { id: 2, name: 'My Drawing 2'},
+    //   { id: 3, name: 'My Drawing 3'},
+    //   { id: 4, name: 'My Drawing 4'},
+    // ];
 
-    setCanvases(placeholderCanvases);
+    fetch('/api/canvases')
+      .then((response) => response.json())
+      .then((canvasesFromServer) => {
+        setCanvases(canvasesFromServer);
+
+        
+      })
+      .catch(() => {
+        console.log('Error fetching canvases');
+      });
+
+    // setCanvases(placeholderCanvases);
 
   }, []);
+
+  function handleCreateCanvas() {
+    fetch('/api/canvas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((newCanvas) => {
+      setCanvases(currentCanvases => [...currentCanvases, newCanvas]);
+      navigate(`/canvas/${newCanvas.id}`);
+    })
+    .catch(() => {
+      console.error('Error creating canvas');
+    });
+  }
 
 
 
@@ -40,6 +68,12 @@ export function Dashboard({ currentUser, onLogout }) {
       </header>
 
       <main className="d-flex flex-grow-1 flex-column justify-content-center">
+        <div className="text-center mb-3">
+          <button className="btn bg-custom-light-pink" onClick={handleCreateCanvas}>
+            Create New Canvas
+          </button>
+        </div>
+
         <hr className="hr-pink mx-auto w-50" />
         <div className="d-flex justify-content-center">
           <div className="scroll-container w-50">
