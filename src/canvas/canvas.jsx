@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './canvas.css';
 
 export function Canvas({ currentUser }) {
+  const { id } = useParams();
+
   const [isEditingName, setIsEditingName] = useState(false);
   const [canvasName, setCanvasName] = useState('Canvas Name');
   const [activeTool, setActiveTool] = useState('brush');
@@ -10,14 +12,20 @@ export function Canvas({ currentUser }) {
 
   const [brushColor, setBrushColor] = useState('#000000'); //color variable
   const [brushSize, setBrushSize] = useState(10); // brush size variable
+  const [colorPalette, setColorPalette] = useState([]);
 
   const [isDrawing, setIsDrawing] = useState(false);
 
   const [sessionUsers, setSessionUsers] = useState(['User 2']);
 
+  const [canvasId, setCanvasId] = useState(id);
+  const [strokes, setStrokes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const canvasRef = useRef(null); // box for the canvas html
 
   const contextRef = useRef(null);
+  const currentStroke = useRef(null); // holds the stroke being drawn right now
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,7 +37,24 @@ export function Canvas({ currentUser }) {
     context.lineCap = 'round';
     context.lineJoin = 'round';
     contextRef.current = context;
-  }, []);
+
+    (async () => {
+      try {
+        const response = await fetch(`/api/canvases`);
+        const allCanvases = await response.json();
+        const canvasData = allCanvases.find(c => c.id === parseInt(id));
+
+        if (canvasData) {
+          setCanvasName(canvasData.name);
+          setStrokes(canvasData.drawingData || []);
+        }
+      } catch (error) {
+        console.error('Error loading canvas:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [id]);
 
   useEffect(() => {
 
@@ -51,17 +76,62 @@ export function Canvas({ currentUser }) {
 
   }, []);
 
+  useEffect(() => {
+    if (!strokes.length || !contextRef.current) return;
+    const context = contextRef.current;
+    context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    strokes.forEach(stroke => {
+      context.beginPath();
+      context.lineCap = 'round';
+      context.lineJoin = 'round';
+      context.lineWidth = stroke.size;
+      if (stroke.tool === 'eraser') {
+        context.globalCompositeOperation = 'destination-out';
+      } else {
+        context.globalCompositeOperation = 'source-over';
+        context.strokeStyle = stroke.color;
+      }
+      if (stroke.points.length > 0) {
+        context.moveTo(stroke.points[0].x, stroke.points[0].y);
+        stroke.points.forEach(point => {
+          context.lineTo(point.x, point.y);
+        });
+        context.stroke();
+      }
+    });
+  }, [strokes]);
+
   function startDrawing(e) {
     e.preventDefault();
     const context = contextRef.current;
     context.beginPath();
     context.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     setIsDrawing(true);
+
+
+
+    currentStroke.current = {
+      points: [{ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY }],
+      color: brushColor,
+      size: brushSize,
+      tool: activeTool,
+    };
   }
 
   function stopDrawing() {
+    if (!isDrawing) return;
     contextRef.current.closePath();
     setIsDrawing(false);
+    if (currentStroke.current) {
+      const newStrokes = [...strokes, currentStroke.current];
+      setStrokes(newStrokes);
+      fetch(`/api/canvas/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: canvasName, drawingData: newStrokes })
+      }).catch(err => console.error('Save failed:', err));
+      currentStroke.current = null;
+    }
   }
 
   function draw(e) {
@@ -78,9 +148,15 @@ export function Canvas({ currentUser }) {
     context.strokeStyle = brushColor;
     }
 
-    context.lineWidth = brushSize; 
-    context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY); 
+    context.lineWidth = brushSize;
+    context.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     context.stroke();
+    if (currentStroke.current) {
+      currentStroke.current.points.push({
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY
+      });
+    }
   }
 
 
@@ -90,14 +166,26 @@ export function Canvas({ currentUser }) {
   };
 
   const handleNameInputBlur = (event) => {
-    setCanvasName(event.target.value);
+    const newName = event.target.value;
+    setCanvasName(newName);
     setIsEditingName(false);
+    fetch(`/api/canvas/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: newName, drawingData: strokes })
+    }).catch(err => console.error('Name save failed:', err));
   };
 
   const handleNameInputKeyDown = (event) => {
     if (event.key === 'Enter') {
-      setCanvasName(event.target.value);
+      const newName = event.target.value;
+      setCanvasName(newName);
       setIsEditingName(false);
+      fetch(`/api/canvas/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: newName, drawingData: strokes })
+      }).catch(err => console.error('Name save failed:', err));
     }
   };
 
@@ -110,6 +198,22 @@ export function Canvas({ currentUser }) {
     event.preventDefault();
     setActiveTool(toolName);
   };
+
+  async function getNewPalette() {
+    try {
+      const response = await fetch('http://colormind.io/api/', {
+        method: 'POST',
+        body: JSON.stringify({ model: 'default' })
+      });
+      const data = await response.json();
+      const hexColors = data.result.map(rgb =>
+        '#' + rgb.map(x => x.toString(16).padStart(2, '0')).join('')
+      );
+      setColorPalette(hexColors);
+    } catch (error) {
+      console.error('Error fetching palette:', error);
+    }
+  }
 
   return (
     <div className="d-flex flex-column app-window">
@@ -222,6 +326,30 @@ export function Canvas({ currentUser }) {
               <i className="bi bi-eraser-fill fs-3"></i>
             </a>
           </div>
+          <div className="me-4">
+            <button className="btn btn-sm btn-outline-secondary" onClick={getNewPalette}>
+              New Palette
+            </button>
+          </div>
+          {colorPalette.length > 0 && (
+            <div className="d-flex gap-2">
+              {colorPalette.map((color, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    backgroundColor: color,
+                    border: '2px solid #333',
+                    cursor: 'pointer',
+                    borderRadius: '4px'
+                  }}
+                  onClick={() => setBrushColor(color)}
+                  title={`Use ${color}`}
+                />
+              ))}
+            </div>
+          )}
         </nav>
       </header>
 
