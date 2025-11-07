@@ -142,9 +142,9 @@ export function Canvas({ currentUser }) {
     const context = contextRef.current;
 
     if (activeTool === 'eraser') {
-      context.globalCompositeOperation = 'destination-out'; // This "erases"
+      context.globalCompositeOperation = 'destination-out';
     } else {
-    context.globalCompositeOperation = 'source-over'; // This "draws"
+    context.globalCompositeOperation = 'source-over';
     context.strokeStyle = brushColor;
     }
 
@@ -201,9 +201,8 @@ export function Canvas({ currentUser }) {
 
   async function getNewPalette() {
     try {
-      const response = await fetch('http://colormind.io/api/', {
-        method: 'POST',
-        body: JSON.stringify({ model: 'default' })
+      const response = await fetch('/api/palette', {
+        method: 'POST'
       });
       const data = await response.json();
       const hexColors = data.result.map(rgb =>

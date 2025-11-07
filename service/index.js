@@ -135,10 +135,25 @@ apiRouter.delete('/canvas/:id', verifyAuth, (req, res) => {
 // generate the canvas link
 apiRouter.get('/canvas/share/:id', verifyAuth, (req, res) => {
   const id = parseInt(req.params.id);
-  
-  res.send({ 
-    shareUrl: `https://emmastartup.com/canvas/${id}?token=fake-share-token` 
+
+  res.send({
+    shareUrl: `https://emmastartup.com/canvas/${id}?token=fake-share-token`
   });
+});
+
+// colormind API
+apiRouter.post('/palette', async (req, res) => {
+  try {
+    const response = await fetch('http://colormind.io/api/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'default' })
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch palette' });
+  }
 });
 
 
