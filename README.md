@@ -155,12 +155,24 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** 
+    - Created a `service` directory, and installed express, cookie-parser, bcryptjs, and uuid as dependencies for the backend. 
+    - runs on port 4000
+    - Created `index.js` and `vite.config.js` files
+    - Updated deploy script
+- [x] **Static middleware for frontend**
+    - I used Express static middleware to create the functions
+- [x] **Calls to third party endpoints**
+    - Integrated Colormind API for generating color palettes when user clicks the "new palette" button
+- [x] **Backend service endpoints**
+    - Authentication enpoints for create, login, logout
+    - Canvas endpoints for GET, POST, PUT, DELETE
+- [x] **Frontend calls service endpoints**
+    - All of the frontend pages call the necessary backend endpoints for either authentication or management of canvases
+- [x] **Supports registration, login, logout, and restricted endpoint**
+    - Password hashing from bcrypt
+    - Cookies for tokens
+    - Canvas endpoints are restricted and requires authentication
 
 
 ## 🚀 DB deliverable

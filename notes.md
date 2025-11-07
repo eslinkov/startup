@@ -1730,6 +1730,275 @@ To store JS object or array, convert it to a JSON string with `JSON.stringify()`
 
 
 
+`fetch`: Built in browser function, use to make a web service request by supplying the URL of the web service
+
+`endpoints` & `APIs`: the functions provided by a web service
+
+`URL`: represents the location of a web resource, can be a web page, font, image, video, database record, JSON object
+
+*URL Syntax*
+
+Scheme -> usually https for web applications
+
+Domain name -> owner of the resource represented by the URL ex. emmastartup.com
+
+Port -> specifies the numbered network port used to connect to the domain server. HTTPS port 443, HTTP port 80
+
+Path -> The path to the resource on the domain. The resource does not have to physically be located on the file system with this path. It can be a logical path representing endpoint parameters, a database table, or an object schema.
+
+Parameters -> Key value pairs that provide additional qualifiers on the resource represented by the path.
+
+Anchor -> represents a sub-location in the resource, a request for the browser to automatically scroll to the element with t\
+
+*Common port numbers*
+
+| Port | Protocol                                                                                           |
+| ---- | -------------------------------------------------------------------------------------------------- |
+| 20   | File Transfer Protocol (FTP) for data transfer                                                     |
+| 22   | Secure Shell (SSH) for connecting to remote devices                                                |
+| 25   | Simple Mail Transfer Protocol (SMTP) for sending email                                             |
+| 53   | Domain Name System (DNS) for looking up IP addresses                                               |
+| 80   | Hypertext Transfer Protocol (HTTP) for web requests                                                |
+| 110  | Post Office Protocol (POP3) for retrieving email                                                   |
+| 123  | Network Time Protocol (NTP) for managing time                                                      |
+| 161  | Simple Network Management Protocol (SNMP) for managing network devices such as routers or printers |
+| 194  | Internet Relay Chat (IRC) for chatting                                                             |
+| 443  | HTTP Secure (HTTPS) for secure web requests                                                        |
+
+
+Each web service I run needs to use a different port to communicate on 
+
+
+*HTTP Request syntax*
+
+```yaml
+<verb> <url path, parameters, anchor> <version>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+`GET` request: 	Get the requested resource. This can represent a request to get a single resource or a resource representing a list of resources.
+
+`POST` request: Create a new resource. The body of the request contains the resource. The response should include a unique ID of the newly created resource.
+
+`PUT` request: Update a resource. Either the URL path, HTTP header, or body must contain the unique ID of the resource being updated. The body of the request should contain the updated resource. The body of the response may contain the resulting updated resource.
+
+`DELETE` request: Delete a resource. Either the URL path or HTTP header must contain the unique ID of the resource to delete.
+
+`OPTIONS` request: 	Get metadata about a resource. Usually only HTTP headers are returned. The resource itself is not returned.
+
+*HTTP response syntax*
+
+```yaml
+<version> <status code> <status string>
+[<header key: value>]*
+[
+
+  <body>
+]
+```
+
+*Status Codes*
+
+- 1xx - Informational.
+- 2xx - Success.
+- 3xx - Redirect to some other location, or that the previously cached resource is still valid.
+- 4xx - Client errors. The request is invalid.
+- 5xx - Server errors. The request cannot be satisfied due to an error on the server.
+
+
+## Node Express Package
+
+`express.Router()` creates a new, mini-Express app, useful to create a special route for api requests
+
+`const` vs `var`: 
+- `const` creates a constant variable, it can never be reassigned to point to something else
+- `var` creates a variable that can be reassigned to anything
+
+`app.use('/api', apiRouter)`: tells your main app: "If any request comes in for a path that starts with /api, hand it over to apiRouter to deal with."
+
+*Uses*:
+- Routing requests for service endpoints
+- Manupilating HTTP requests with JSON body content
+- Generating HTTP responses
+- Using `middleware` to add functionality
+
+*Create an Express application*
+
+1. Use NPM to install the Express package
+
+```sh
+➜ npm install express
+```
+
+2. Call the `express` constructor to create the Express application and listen for HTTP requests on a desired port
+
+```js
+const express = require('express');
+const app = express();
+
+app.listen(8080);
+```
+
+3. With the `app` objcest you can now add HTTP routing and middleware functions to the application
+
+*Defining routes*
+
+Route: a rule that tells the server what code to run when it receives a request at a specific URL path
+
+*Basic Syntax*
+
+Use the `app` object from Express and match it with an HTTP verb like `app.get()`, `app.post()`, `app.put()`, `app.delete()`
+
+```js
+app.get('/hello', (req, res) => {
+  res.send('Hello, world!');
+});
+```
+
+*How to make a dynamic route*
+
+Use a URL parameter `:`
+
+```js
+app.get('/store/:storeName', (req, res) => {
+  // If the user requests '/store/orem'
+  // req.params.storeName will be "orem"
+  const name = req.params.storeName;
+  res.send({ name: name });
+});
+```
+
+Access the value: Express will automatically take the value from the URL and put it in the `req.params` object
+
+*Next parameter*
+
+The handler function can also take a third argument, next.
+
+```js
+app.get('/store/:storeName', (req, res, next) => {
+  // ...
+});
+```
+- You call `next()` if you want to pass the request on to the next matching route or middleware in your file.
+
+- If your function sends a response (like `res.send()`), you are done and you don't need to include `next`.
+
+
+*Middleware*
+
+`next()` function
+- `function myMiddleware(req, res, next)`
+- after the function does its job, call `next()` to pass the request to the next function
+- if next is not included in the middleware function, then the passing stops
+
+*Custom Middleware*
+- Write your own middleware for simple tasks
+- ex/ logger that prints the URL of every request
+
+```js
+// This middleware logs the request URL and then passes it on
+app.use((req, res, next) => {
+  console.log(req.originalUrl); // Does its job
+  next(); // Passes to the next station
+});
+```
+
+*Built-in Middleware from Express*
+- `express.static`
+
+```js 
+// This tells Express to serve static files from the 'public' folder
+app.use(express.static('public'));
+```
+- This middleware checks if the request URL matches a file in your public folder (e.g., /index.html or /my-image.png).
+- If it finds a match, it sends that file as the response and stops the chain (it doesn't call next).
+- This is how you will serve your React application's dist folder.
+
+*Third-party Middleware from NPM*
+
+`cookie-parser`
+- Install: `npm install cookie-parser`
+- What it does: reads the raw `Cookie` header from the request and turns it into a simple object, which it attaches to the `req` object as `req.cookies`
+
+```js
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+```
+
+*Error handling Middleware*
+- goes at the end of the line of functions to catch errors
+- has 4 parameters `(err, req, res, next)`
+- if any other middleware or route throws an error, Express skips all other stations and sens the request directly to this error handler
+
+```js
+// This must be defined AFTER all your other routes and middleware
+app.use((err, req, res, next) => {
+  console.error(err); // Log the error
+  // Send a clean JSON error message back to the client
+  res.status(500).send({ message: 'Something went wrong!' });
+});
+```
+
+## JavaScript Modules
+
+*What they are*: Modules are just JS files
+
+*Purpose*: to organize your code by splitting it into separate files instead of having one giant file
+
+`export` allows you to send out code like functions, variables or classes from one file
+
+`import` allows you to import the code into another file that needs it
+
+1. *CommonJS*
+- Import: use the `require()` function
+
+```js
+// Import the 'express' library
+const express = require('express');
+
+// Import one of your own files
+const DB = require('./database.js');
+```
+
+- Export: assign whatever you want to export to the `module.exports` object
+
+```js
+// In database.js
+function connect() {
+  // ...
+}
+
+module.exports = {
+  connect, // This exports the connect function
+};
+```
+
+*2. ES Modules*
+- Used in React and modern Node.js code
+- First tell Node.js to use ESM by adding `"type": "module"` to the `package.json` file
+- Import: use the `import` keyword at the top of the file
+
+```js
+// Import the 'express' library
+import express from 'express';
+
+// Import a specific function from your own file
+import { alertDisplay } from './alert.js';
+```
+
+- Export: add the `export` keyword in front of the specific thing you want to share
+
+```js
+// In alert.js
+export function alertDisplay(msg) {
+  console.log(msg);
+}
+```
+
 
 
 
