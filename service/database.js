@@ -70,7 +70,45 @@ async function removeUserToken(token) {
 
 // ===== database canvas functions ===== //
 
+//  1. getCanvases() - get all canvases
+async function getCanvases() {
+    const canvases = await canvasCollection.find({}).toArray();
+    return canvases;
+}
 
+//   2. createCanvas(canvas) - create a new canvas
+async function createCanvas() {
+    const lastCanvas = await canvasCollection.find().sort({ id: -1 }).limit(1).toArray();
+    const nextId = lastCanvas.length > 0 ? lastCanvas[0].id + 1 : 1;
+
+    const canvas = {
+        id: nextId,
+        name: 'Untitled Canvas',
+        owner: 'tempUser',
+        drawingData: []
+    };
+
+    await canvasCollection.insertOne(canvas);
+    return canvas;
+    
+
+
+}
+
+
+//   3. updateCanvas(id, updates) - update a canvas
+async function updateCanvas(id, updates) {
+    await canvasCollection.updateOne({ id: id }, { $set: updates });
+    return await canvasCollection.findOne({ id: id });
+}
+
+
+
+//   4. deleteCanvas(id) - delete a canvas
+async function deleteCanvas(id) {
+    const result = await canvasCollection.deleteOne({ id: id });
+    return result.deletedCount > 0;
+}
 
 
 // ===== Export functions so index.js can use ===== //
@@ -80,4 +118,8 @@ module.exports = {
     getUserByToken,
     updateUserToken,
     removeUserToken,
+    getCanvases,
+    createCanvas,
+    updateCanvas,
+    deleteCanvas
 };
