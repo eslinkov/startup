@@ -1999,8 +1999,19 @@ export function alertDisplay(msg) {
 }
 ```
 
+# DATABASE (mongo)
 
+`.findOne()` - method for when you want tofind one specific document in MongoDB
 
+`updateOne()`
+
+Syntax to change existing field to new value
+
+`collection.updateOne({ field: value }, { $set: { fieldToUpdate: newValue } });`
+
+Syntax to remove a field:
+
+`collection.updateOne({ field: value }, { $unset: { fieldToRemove: '' } });`
 
 
 
