@@ -54,8 +54,9 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
 
     if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
-      setAuthCookie(res, user.token);
+      const newToken = uuid.v4(); // generate new token
+      await DB.updateUserToken(user.username, newToken); // save new token to database
+      setAuthCookie(res, newToken);
       res.send({ username: user.username });
       return;
     }
@@ -64,10 +65,11 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
-  if (user) {
-    delete user.token;
-  }
+  // const user = await findUser('token', req.cookies[authCookieName]);
+  // if (user) {
+  //   delete user.token;
+  // }
+  await DB.removeUserToken(req.cookies[authCookieName]);
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
