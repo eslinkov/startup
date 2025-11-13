@@ -93,32 +93,40 @@ apiRouter.get('/test', verifyAuth, (_req, res) => {
 // ===== Canvas App Endpoints ===== //
 
 // gets all canvases
-apiRouter.get('/canvases', verifyAuth, (req, res) => {
-  // filter by user
+apiRouter.get('/canvases', verifyAuth, async (req, res) => {
+  
+  const canvases = await DB.getCanvases();
   res.send(canvases);
 });
 
 // create new blank canvas
-apiRouter.post('/canvas', verifyAuth, (req, res) => {
-  const newCanvas = {
-    id: nextCanvasId++,
-    name: 'Untitled Canvas',
-    owner: 'tempUser',
-    drawingData: []
-  };
-  canvases.push(newCanvas);
+apiRouter.post('/canvas', verifyAuth, async (req, res) => {
+  // const newCanvas = {
+  //   id: nextCanvasId++,
+  //   name: 'Untitled Canvas',
+  //   owner: 'tempUser',
+  //   drawingData: []
+  // };
+  // canvases.push(newCanvas);
+  const newCanvas = await DB.createCanvas();
   res.send(newCanvas);
 });
 
 // update canvas name or save drawings
-apiRouter.put('/canvas/:id', verifyAuth, (req, res) => {
+apiRouter.put('/canvas/:id', verifyAuth, async (req, res) => {
   const id = parseInt(req.params.id);
   const { name, drawingData } = req.body;
-  const canvas = canvases.find(c => c.id === id);
+
+  const updates = {};
+  if (name) updates.name = name;
+  if (drawingData) updates.drawingData = drawingData;
+
+  // const canvas = canvases.find(c => c.id === id);
+  const canvas = await DB.updateCanvas(id, updates);
 
   if (canvas) {
-    if (name) canvas.name = name;
-    if (drawingData) canvas.drawingData = drawingData;
+    // if (name) canvas.name = name;
+    // if (drawingData) canvas.drawingData = drawingData;
     res.send(canvas);
   } else {
     res.status(404).send({ msg: 'Canvas not found' });
@@ -126,11 +134,13 @@ apiRouter.put('/canvas/:id', verifyAuth, (req, res) => {
 });
 
 // delete a canvas
-apiRouter.delete('/canvas/:id', verifyAuth, (req, res) => {
+apiRouter.delete('/canvas/:id', verifyAuth, async (req, res) => {
   const id = parseInt(req.params.id);
-  const index = canvases.findIndex(c => c.id === id);
-  if (index !== -1) {
-    canvases.splice(index, 1);
+  const deleted = await DB.deleteCanvas(id);
+
+  // const index = canvases.findIndex(c => c.id === id);
+  if (deleted) {
+    
     res.status(204).end();
   } else {
     res.status(404).send({ msg: 'Canvas not found' });
