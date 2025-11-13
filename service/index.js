@@ -4,6 +4,9 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 
+// === Import database functions === //
+const DB = require('./database.js');
+
 const app = express();
 
 // =====Middleware===== //
