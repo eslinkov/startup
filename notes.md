@@ -2014,6 +2014,12 @@ Syntax to remove a field:
 `collection.updateOne({ field: value }, { $unset: { fieldToRemove: '' } });`
 
 
+Find one specific document: findOne({ field: value }) - returns a single document (or null)
+
+Find multiple documents: find({ criteria }) - returns a "cursor" (like a pointer to results)
+  - need to convert the cursor to an array using .toArray()
+  - `find({})`  the empty `{}` means no filter, get everything
+  - `.toArray()`  converts the results to an array
 
 ```jsx
 <div className="input-group sound-button-container">
