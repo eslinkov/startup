@@ -189,7 +189,7 @@ async function findUser(field, value) {
 
 
 //============================================//
-// Return the application's default page for any unknown routes
+// Return the application's default page for any unknown routes, fix stupid refresh bug
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
