@@ -17,10 +17,10 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // =====In-Memory "Database"===== //
-let users = [];
+// let users = [];
 const authCookieName = 'token';
-let canvases = [];
-let nextCanvasId = 1;
+// let canvases = [];
+// let nextCanvasId = 1;
 
 // =====Service Port===== //
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -164,16 +164,17 @@ apiRouter.post('/palette', async (req, res) => {
 
 async function createUser(username, password) {
   
-  const passwordHash = await bcrypt.hash(password, 10);
+  // const passwordHash = await bcrypt.hash(password, 10);
 
-  const user = {
-    username: username,
-    password: passwordHash,
-    token: uuid.v4(),
-  };
+  // const user = {
+  //   username: username,
+  //   password: passwordHash,
+  //   token: uuid.v4(),
+  // };
 
-  users.push(user);
-  return user;
+  // users.push(user);
+  // return user;
+  return await DB.createUser(username, password);
 }
 
 function setAuthCookie(res, authToken) {
@@ -185,8 +186,15 @@ function setAuthCookie(res, authToken) {
 }
 
 async function findUser(field, value) {
+    // if (!value) return null;
+    // return users.find((u) => u[field] === value);
     if (!value) return null;
-    return users.find((u) => u[field] === value);
+    if (field === 'username') {
+      return await DB.getUser(value);
+    } else if (field === 'token') {
+        return await DB.getUserByToken(value);
+    }
+    return null;
 }
 
 
