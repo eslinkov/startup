@@ -40,6 +40,12 @@ class CanvasNotifier {
     notifyObservers(msg) {
         this.observers.forEach(callback => callback(msg));
     }
+
+    close() { // disconnects from websocket when canvas page is exited
+        if (this.socket) {
+            this.socket.close();
+        }
+    }
 }
 
 const notifier = new CanvasNotifier();
