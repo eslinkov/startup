@@ -61,24 +61,45 @@ export function Canvas({ currentUser }) {
     // connect to WebSocket
     notifier.connect();
 
-    // join message
-    const joinOnOpen = () => {
-      notifier.sendMessage({
-        type: 'join',
-        canvasId: id,
-        userName: currentUser
-      });
+    const handleMessage = (msg) => {
+      switch (msg.type) {
+        case 'userList':
+          setSessionUsers(msg.users.filter(u => u !== currentUser));
+          break;
+        case 'userJoined':
+          setSessionUsers(prev => [...prev, msg.userName]);
+          break;
+        case 'userLeft':
+          setSessionUsers(prev => prev.filter(u => u !== msg.userName));
+          break;
+      }
     };
+
+    notifier.addObserver(handleMessage);
+
+    // join message
+    // const joinOnOpen = () => {
+    //   notifier.sendMessage({
+    //     type: 'join',
+    //     canvasId: id,
+    //     userName: currentUser
+    //   });
+    // };
 
     const checkConnection = setInterval(() => {
       if (notifier.socket && notifier.socket.readyState === WebSocket.OPEN) {
         clearInterval(checkConnection);
-        joinOnOpen();
+        notifier.sendMessage({
+          type: 'join',
+          canvasId: id,
+          userName: currentUser
+        });
       }
     }, 100);
 
     return () => {
       clearInterval(checkConnection);
+      notifier.removeObserver(handleMessage);
       notifier.close();
     };
 
