@@ -3,9 +3,13 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const http = require('http');
 
 // === Import database functions === //
 const DB = require('./database.js');
+
+// === Import WebSocket peer proxy === //
+const { peerProxy } = require('./peerProxy.js');
 
 const app = express();
 
@@ -217,6 +221,10 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+// Create HTTP server and attach WebSocket
+const server = http.createServer(app);
+peerProxy(server);
+
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
