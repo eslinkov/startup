@@ -14,13 +14,31 @@ class CanvasNotifier {
 
         this.socket.onmessage = (event) => {
             const msg = JSON.parse(event.data);
-            // this.notifyObservers(msg);
-            console.log('Received:', msg);
+            this.notifyObservers(msg);
+            // console.log('Received:', msg);
         };
 
         this.socket.onclose = () => {
             console.log('WebSocket disconnected');
         };
+    }
+
+    sendMessage(msg) {
+        if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+            this.socket.send(JSON.stringify(msg));
+        }
+    }
+
+    addObserver(callback) {
+        this.observers.push(callback);
+    }
+
+    removeObserver(callback) {
+        this.observers = this.observers.filter(obs => obs !== callback);
+    }
+
+    notifyObservers(msg) {
+        this.observers.forEach(callback => callback(msg));
     }
 }
 
