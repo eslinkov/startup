@@ -82,6 +82,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
+    req.user = user;
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
@@ -99,7 +100,7 @@ apiRouter.get('/test', verifyAuth, (_req, res) => {
 // gets all canvases
 apiRouter.get('/canvases', verifyAuth, async (req, res) => {
   
-  const canvases = await DB.getCanvases();
+  const canvases = await DB.getCanvases(req.user.username);
   res.send(canvases);
 });
 
@@ -112,7 +113,7 @@ apiRouter.post('/canvas', verifyAuth, async (req, res) => {
   //   drawingData: []
   // };
   // canvases.push(newCanvas);
-  const newCanvas = await DB.createCanvas();
+  const newCanvas = await DB.createCanvas(req.user.username);
   res.send(newCanvas);
 });
 
