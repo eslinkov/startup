@@ -18,6 +18,7 @@ export function Canvas({ currentUser }) {
   const [isDrawing, setIsDrawing] = useState(false);
 
   const [sessionUsers, setSessionUsers] = useState([]);
+  const [shareLink, setShareLink] = useState('');
 
   const [canvasId, setCanvasId] = useState(id);
   const [strokes, setStrokes] = useState([]);
@@ -49,6 +50,11 @@ export function Canvas({ currentUser }) {
           setCanvasName(canvasData.name);
           setStrokes(canvasData.drawingData || []);
         }
+
+        const shareResponse = await fetch(`/api/canvas/share/${id}`);
+        const shareData = await shareResponse.json();
+        setShareLink(shareData.shareUrl);
+
       } catch (error) {
         console.error('Error loading canvas:', error);
       } finally {
@@ -454,7 +460,7 @@ export function Canvas({ currentUser }) {
                 type="text"
                 id="invite-link"
                 className="form-control"
-                defaultValue="https://cocreate.example/..."
+                value={shareLink}
                 readOnly
               />
               <button className="btn btn-outline-secondary">Copy</button>

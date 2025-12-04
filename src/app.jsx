@@ -16,6 +16,8 @@ import { Canvas } from './canvas/canvas';
 import { Home } from './home/home';
 import { Dashboard } from './dashboard/dashboard';
 
+import { JoinCanvas } from './canvas/joinCanvas';
+
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -53,6 +55,10 @@ export default function App() {
             <Route 
               path='/dashboard' 
               element={<Dashboard currentUser={currentUser} onLogout={handleLogout} />}              
+            />
+            <Route
+              path='/canvas/:id/join'
+              element={<JoinCanvas/>}
             />
             <Route 
               path='/canvas/:id' 
