@@ -57,6 +57,7 @@ export function Canvas({ currentUser }) {
     })();
   }, [id]);
 
+  // WEBSOCJET USE EFFECT
   useEffect(() => {
     // connect to WebSocket
     notifier.connect();
@@ -71,6 +72,9 @@ export function Canvas({ currentUser }) {
           break;
         case 'userLeft':
           setSessionUsers(prev => prev.filter(u => u !== msg.userName));
+          break;
+        case 'stroke':
+          setStrokes(prev => [...prev, msg.stroke]);
           break;
       }
     };
@@ -168,12 +172,15 @@ export function Canvas({ currentUser }) {
   }
 
   function stopDrawing() {
+
     if (!isDrawing) return;
     contextRef.current.closePath();
     setIsDrawing(false);
+
     if (currentStroke.current) {
       const newStrokes = [...strokes, currentStroke.current];
       setStrokes(newStrokes);
+      notifier.sendMessage({ type: 'stroke', stroke: currentStroke.current });
       fetch(`/api/canvas/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
