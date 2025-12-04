@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './canvas.css';
+import notifier from './canvasNotifier.js'; // brings in websocket notifier so canvas can use it
 
 export function Canvas({ currentUser }) {
   const { id } = useParams();
@@ -55,6 +56,33 @@ export function Canvas({ currentUser }) {
       }
     })();
   }, [id]);
+
+  useEffect(() => {
+    // connect to WebSocket
+    notifier.connect();
+
+    // join message
+    const joinOnOpen = () => {
+      notifier.sendMessage({
+        type: 'join',
+        canvasId: id,
+        userName: currentUser
+      });
+    };
+
+    const checkConnection = setInterval(() => {
+      if (notifier.socket && notifier.socket.readyState === WebSocket.OPEN) {
+        clearInterval(checkConnection);
+        joinOnOpen();
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(checkConnection);
+      notifier.close();
+    };
+
+  }, [id, currentUser]);
 
   useEffect(() => {
 
