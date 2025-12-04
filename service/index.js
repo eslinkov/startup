@@ -155,10 +155,26 @@ apiRouter.delete('/canvas/:id', verifyAuth, async (req, res) => {
 // generate the canvas link
 apiRouter.get('/canvas/share/:id', verifyAuth, (req, res) => {
   const id = parseInt(req.params.id);
+  const host = req.get('host');
+  const protocol = req.protocol;
 
   res.send({
-    shareUrl: `https://emmastartup.com/canvas/${id}?token=fake-share-token`
+    shareUrl: `${protocol}://${host}/canvas/${id}/join`
   });
+});
+
+// join a shared canvas
+apiRouter.post('/canvas/:id/join', verifyAuth, async (req, res) => {
+  const id = parseInt(req.params.id);
+  const username = req.user.username;
+
+  const canvas = await DB.addSharedUser(id, username);
+
+  if (canvas) {
+    res.send({ msg: 'Joined canvas', canvas });
+  } else {
+    res.status(404).send({ msg: 'Canvas not found' });
+  }
 });
 
 // colormind API

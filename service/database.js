@@ -71,8 +71,14 @@ async function removeUserToken(token) {
 // ===== database canvas functions ===== //
 
 //  1. getCanvases() - get all canvases
-async function getCanvases(owner) {
-    const canvases = await canvasCollection.find({ owner: owner }).toArray();
+async function getCanvases(username) {
+    const canvases = await canvasCollection.find({ 
+        $or: [
+            { owner: username },
+            { sharedWith: username }
+
+        ]
+    }).toArray();
     return canvases;
 }
 
@@ -110,6 +116,15 @@ async function deleteCanvas(id) {
     return result.deletedCount > 0;
 }
 
+// canvas sharing function
+async function addSharedUser(canvasId, username) {
+    await canvasCollection.updateOne(
+        { id: canvasId },
+        { $addToSet: { sharedWith: username } }
+    );
+    return await canvasCollection.findOne({ id: canvasId });
+}
+
 
 // ===== Export functions so index.js can use ===== //
 module.exports = {
@@ -121,5 +136,6 @@ module.exports = {
     getCanvases,
     createCanvas,
     updateCanvas,
-    deleteCanvas
+    deleteCanvas,
+    addSharedUser
 };
