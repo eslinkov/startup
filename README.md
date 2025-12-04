@@ -186,11 +186,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - peerProxy.js sets up Websocket server attached to the HTTP server. Here it handles upgrade requests and tracks connections using a map. Also processes messages and includes the keepalive
+- [x] **Frontend makes WebSocket connection** - created the canvasnotifier.js class that helps establish the WebSocket connection and notifies React of incoming messages, linking the frontend to the WebSocket connection
+- [x] **Data sent over WebSocket connection** - users joining/leaving, drawing strokes messages being sent
+- [x] **WebSocket data displayed** - Canvas omponent was updated to handle incoming WEbSocket messages and updated the display as users join or leave a session. Also canvas strokes update across user screens in real time
+- [x] **Application is fully functional** - Fixed the issue where all users could access all projects created by any user, also fixed the copy link button. 
 
 
 [def]: CanvasPage.png
