@@ -463,7 +463,10 @@ export function Canvas({ currentUser }) {
                 value={shareLink}
                 readOnly
               />
-              <button className="btn btn-outline-secondary">Copy</button>
+              <button
+                className="btn btn-outline-secondary"
+                onClick={() => navigator.clipboard.writeText(shareLink)}
+              >Copy</button>
             </div>
           </div>
         </aside>
