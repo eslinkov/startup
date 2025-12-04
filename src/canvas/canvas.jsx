@@ -17,7 +17,7 @@ export function Canvas({ currentUser }) {
 
   const [isDrawing, setIsDrawing] = useState(false);
 
-  const [sessionUsers, setSessionUsers] = useState(['User 2']);
+  const [sessionUsers, setSessionUsers] = useState([]);
 
   const [canvasId, setCanvasId] = useState(id);
   const [strokes, setStrokes] = useState([]);
@@ -105,25 +105,25 @@ export function Canvas({ currentUser }) {
 
   }, [id, currentUser]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const intervalId = setInterval(() => {
-      // users joining and leaving placeholder
-      setSessionUsers(currentUsers => {
-        if (currentUsers.includes('User 3')) {
+  //   const intervalId = setInterval(() => {
+  //     // users joining and leaving placeholder
+  //     setSessionUsers(currentUsers => {
+  //       if (currentUsers.includes('User 3')) {
           
-          return ['User 2'];
-        } else {
+  //         return ['User 2'];
+  //       } else {
           
-          return ['User 2', 'User 3'];
-        }
-      });
-    }, 4000);
+  //         return ['User 2', 'User 3'];
+  //       }
+  //     });
+  //   }, 4000);
 
     
-    return () => clearInterval(intervalId);
+  //   return () => clearInterval(intervalId);
 
-  }, []);
+  // }, []);
 
   useEffect(() => {
     if (!strokes.length || !contextRef.current) return;
