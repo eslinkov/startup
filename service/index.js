@@ -155,13 +155,8 @@ apiRouter.delete('/canvas/:id', verifyAuth, async (req, res) => {
 // generate the canvas link
 apiRouter.get('/canvas/share/:id', verifyAuth, (req, res) => {
   const id = parseInt(req.params.id);
-  let host = req.get('host');
+  const host = req.get('host');
   const protocol = req.protocol;
-
-  // In dev mode, frontend runs on port 5173
-  if (host.includes(':4000')) {
-    host = host.replace(':4000', ':5173');
-  }
 
   res.send({
     shareUrl: `${protocol}://${host}/canvas/${id}/join`
@@ -240,13 +235,7 @@ async function findUser(field, value) {
 //============================================//
 // Return the application's default page for any unknown routes, fix stupid refresh bug
 app.use((_req, res) => {
-  const fs = require('fs');
-  if (fs.existsSync('public/index.html')) {
-    res.sendFile('index.html', { root: 'public' });
-  } else {
-    // Dev mode - frontend runs on port 5173
-    res.status(404).send('In dev mode, use port 5173 for frontend routes');
-  }
+  res.sendFile('index.html', { root: 'public' });
 });
 
 // Create HTTP server and attach WebSocket
