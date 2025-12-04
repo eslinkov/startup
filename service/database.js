@@ -71,20 +71,20 @@ async function removeUserToken(token) {
 // ===== database canvas functions ===== //
 
 //  1. getCanvases() - get all canvases
-async function getCanvases() {
-    const canvases = await canvasCollection.find({}).toArray();
+async function getCanvases(owner) {
+    const canvases = await canvasCollection.find({ owner: owner }).toArray();
     return canvases;
 }
 
 //   2. createCanvas(canvas) - create a new canvas
-async function createCanvas() {
+async function createCanvas(owner) {
     const lastCanvas = await canvasCollection.find().sort({ id: -1 }).limit(1).toArray();
     const nextId = lastCanvas.length > 0 ? lastCanvas[0].id + 1 : 1;
 
     const canvas = {
         id: nextId,
         name: 'Untitled Canvas',
-        owner: 'tempUser',
+        owner: owner,
         drawingData: []
     };
 
